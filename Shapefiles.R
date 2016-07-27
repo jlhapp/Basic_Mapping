@@ -20,7 +20,6 @@ proj4string(Marine)
 proj4string(Marine) <- NA_character_ #remove CRS information from Marine
 proj4string(Marine) <- CRS("+init=epsg:32119") #set projection to NAD83/NC
 
-#Convert to GeoJSON file
 
 
 
@@ -55,10 +54,8 @@ print(proj4string(states))
 #Make a simple map of the states.  Plot will display in the lower
 #right-hand corner (next to files, package, etc.)
 plot(states, border="black")
-
 ###########################Shapefiles########################################
 ############################################################################
-
 
 
 
@@ -68,14 +65,17 @@ plot(states, border="black")
 #and select Save As.  Change the file type to GeoJSON.
 
 #For R script:
-#Use the shapefile of weather stations that was given the variable name
-#"states"
-Data <- SpatialPolygonsDataFrame(states, data=states)
-leafdat<-paste("D:/LearnR/BasicMapping/", "/", Marine, ".geojson", sep = "")
-writeOGR(Marine, layer = "", driver = "GeoJSON")
+#Use the shapefile of weather stations 
+library(tmap) # to read shapefile
+library(geojsonio) # to write geojson
 
-
-
+#Name variable shp and use read_shape 
+shp = read_shape("D:/LearnR/BasicMapping/WeatherStations.shp")
+#plot the shp data
+qtm(shp)
+#use the geojson_write expression followed by ([current file extension],
+#file = "[file path]")
+geojson_write(shp, file = "D:/tmp/shp.geojson")
 #######################Convert shapefile to GeoJSON############################
 ############################################################################
 
