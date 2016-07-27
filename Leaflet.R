@@ -25,7 +25,7 @@ Cat2 <- readLines("D:\\LearnR\\TryGEojson\\Cat2.geojson", warn = FALSE) %>%
 #variable.  Add leaft() %>% and then setView and specify the lat/long. Set 
 #the zoom level on a 1-17 scale. 1 = full zoom out, 17 = full zoom in
 viewmap <- leaflet() %>% setView(lng = -76.0589, lat = 34.9601, zoom = 7) 
-viewmap %>% addGeoJSON(Cat1) %>% addTiles()
+viewmap %>% addGeoJSON(Cat1) %>% addTiles()  
 
 #############################Hurricane Leaflet##############################
 ############################################################################
@@ -89,3 +89,66 @@ leaflet() %>% addGeoJSON(Triangle) %>% addTiles()
 
 ###To save online, click Export, and Save as Webpage...it'll install some packages and save html
 ###file to your project directory.
+
+
+
+############################################################################
+############################################################################
+###########################April 2011 Tornado Outbreak#######################
+
+##############CONVERT TORNADOES SHAPEFILE TO GEOJSON FILE##################
+library(tmap) # to read shapefile
+library(geojsonio) # to write geojson
+
+#Name variable shp and use read_shape 
+shp = read_shape("D:/LearnR/BasicMapping/April2011.shp")
+#plot the shp data
+qtm(shp)
+#use the geojson_write expression followed by ([current file extension],
+#file = "[file path] with the name of the geojson you want")
+geojson_write(shp, file = "D:/LearnR/BasicMapping/AprilTornado.geojson")
+##############CONVERT TORNADOES SHAPEFILE TO GEOJSON FILE##################
+
+##############################LEAFLET#####################################
+#Set the name "geojson" to the Tornadoes geojson
+AprilTorn <- readLines("D:\\LearnR\\BasicMapping\\AprilTornado.geojson", warn = FALSE) %>%
+  paste(collapse = "\n") %>%
+  fromJSON(simplifyVector = FALSE)
+
+#To map the GeoJSON file to a specific extent, you'll first need to name a
+#variable.  Add leaft() %>% and then setView and specify the lat/long. Set 
+#the zoom level on a 1-17 scale. 1 = full zoom out, 17 = full zoom in
+viewmap <- leaflet() %>% setView(lng = -89.0589, lat = 35.9601, zoom = 5) 
+viewmap %>% addGeoJSON(AprilTorn) %>% addTiles()
+
+###########################April 2011 Tornado Outbreak#######################
+############################################################################
+############################################################################
+
+
+
+
+############################################################################
+################################RASTER LEAFLET###########################
+#import raster library
+library(raster)
+
+#Name variable climate and specify the location of the raster using raster
+#expression
+climate <- raster("D:/DesktopStuff/R/Shapefiles/precipann_r_nc1.tif")
+
+#Name variable "pal" and write colorNumeric expression.  c = choices,
+#specify "values" as teh raster variable
+pal <- colorNumeric(c("#0C2C84", "#41B6C4", "#FFFFCC"), values(climate),
+                    na.color = "transparent")
+
+#add leaflet and tiles
+leaflet() %>% addTiles() %>%
+  #add the raster image.  After the first parantheses, write the raster
+  #variable, then colors = [the color palette(i.e. pal)] and opacity
+  addRasterImage(climate, colors = pal, opacity = 0.8) %>%
+  #add the legend and title
+  addLegend(pal = pal, values = values(climate),
+            title = "Annual Rain")
+################################RASTER LEAFLET###########################
+############################################################################
