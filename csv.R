@@ -29,8 +29,8 @@ gc<- geocode("Durham, North Carolina")
 #then map the geocoded point
 map <- get_map(gc)
 #Set the bounding box using the geocoded map
-(bb <- attr(map, "bb"))
-(bbox <- bb2bbox (bb))
+(bb <- attr(map, "bb2"))
+(bbox <- bb2bbox (bb2))
 
 #Get the Stamenmap using the bounding box.
 stamMap <- get_stamenmap(bbox)
@@ -40,6 +40,7 @@ stamMap <- get_stamenmap(bbox)
 #y=[the y column name in your table]), color="[color]")
 ggmap(map) + geom_point(data = UNC, aes(x=X, y=Y), color="red")
 ########Plot x,y coordinates using ggmap
+
 
 
 

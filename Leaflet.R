@@ -1,10 +1,6 @@
 
 library(leaflet)
 library(jsonlite)
-
-
-library(leaflet)
-library(jsonlite)
 library(shiny)
 library(rgdal)
 
@@ -121,6 +117,9 @@ AprilTorn <- readLines("D:\\LearnR\\BasicMapping\\AprilTornado.geojson", warn = 
 viewmap <- leaflet() %>% setView(lng = -89.0589, lat = 35.9601, zoom = 5) 
 viewmap %>% addGeoJSON(AprilTorn) %>% addTiles()
 
+##Categorize the lines by magnitude of the tornado
+Magnitude <- subset(AprilTorn, AprilTorn$Name %in% c("EF4","EF5"))
+
 ###########################April 2011 Tornado Outbreak#######################
 ############################################################################
 ############################################################################
@@ -152,3 +151,6 @@ leaflet() %>% addTiles() %>%
             title = "Annual Rain")
 ################################RASTER LEAFLET###########################
 ############################################################################
+
+
+
