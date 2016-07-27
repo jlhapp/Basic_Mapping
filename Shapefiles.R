@@ -61,3 +61,21 @@ plot(states, border="black")
 
 
 
+
+############################################################################
+#######################Convert shapefile to GeoJSON############################
+#Can convert a shapefile to a GeoJSON file using QGIS.  Right click on layer
+#and select Save As.  Change the file type to GeoJSON.
+
+#For R script:
+#Use the shapefile of weather stations that was given the variable name
+#"states"
+Data <- SpatialPolygonsDataFrame(states, data=states)
+leafdat<-paste("D:/LearnR/BasicMapping/", "/", Marine, ".geojson", sep = "")
+writeOGR(Marine, layer = "", driver = "GeoJSON")
+
+
+
+#######################Convert shapefile to GeoJSON############################
+############################################################################
+
