@@ -50,6 +50,8 @@ shpData <- spTransform(states,
 #Verify the projection is set
 print(proj4string(states))
 
+
+
 #Make a simple map of the states.  Plot will display in the lower
 #right-hand corner (next to files, package, etc.)
 plot(states, border="black")
