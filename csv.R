@@ -21,11 +21,6 @@ str(UNC)
 #Display the first three rows of the table
 head(UNC, 3)
 
-#map census tract shapefile of North Carolina
-Tracts <- readOGR(dsn = "D:/LearnR/BasicMapping/NC_Tracts.shp", layer = "NC_Tracts")
-plot(Tracts)
-
-
 
 ########Plot x,y coordinates using ggmap
 #Grab the center of a map and compute its bounding box.  
@@ -59,6 +54,14 @@ map <- ggplot() + geom_point(data = UNC, aes(x=X, y=Y), color="red")
 plot(map)
 ###Plot x,y coordinates using ggplot
 
+
+
+###Map x,y coordinates on top of shapefile you have
+#map census tract shapefile of North Carolina
+Tracts <- readOGR(dsn = "D:/LearnR/BasicMapping/NC_Tracts.shp", layer = "NC_Tracts")
+plot(Tracts)
+
+###Map x,y coordinates on top of shapefile you have
 
 ###########################csv files#########################################
 ############################################################################
