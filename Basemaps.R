@@ -15,3 +15,14 @@ m %>% addProviderTiles("NASAGIBS.ViirsEarthAtNight2012")
 m %>% addProviderTiles("NASAGIBS.ModisTerraLSTDay")
 m %>% addProviderTiles("Thunderforest.TransportDark")
 m %>% addProviderTiles("HikeBike.HikeBike")
+
+
+#to set a specific date, addTile and then addProvider tiles.  Set the basemap
+#you want followed by a comma, and then options = providerTileOptions(time = )
+ m2 <- leaflet() %>% 
+  setView(lng = 4.5, lat = 51, zoom = 1) %>%
+  addTiles() %>% 
+  addProviderTiles("NASAGIBS.ModisTerraTrueColorCR",
+                   options = providerTileOptions(time = "2015-07-31", opacity = 0.5))
+
+ m2
