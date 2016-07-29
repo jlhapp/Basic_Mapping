@@ -135,7 +135,7 @@ leaflet() %>% addTiles() %>%
   #add the legend and title
   addLegend(pal = pal, values = values(climate),
             title = "Annual Rain")
-################################RASTER LEAFLET###########################
+#################################RASTER LEAFLET###########################
 ############################################################################
 
 
