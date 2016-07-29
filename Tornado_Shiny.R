@@ -1,6 +1,7 @@
 library(shiny)
 library(leaflet)
 library(RColorBrewer)
+library(rgdal)
 
 #This will create a leaflet map with a slider for magnitude of tornado (1-5 scale)
 #leaflet will create a static map and leafletProxy will mangage the dynamic
