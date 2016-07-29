@@ -77,8 +77,9 @@ server <- function(input, output, session) {
     leafletProxy("map", data = filteredData()) %>%
       #You'll want to refresh the map by clearing the shapes
       clearShapes() %>%
-      #Re-add the the points
-      addCircles(radius = ~10^MAG/10, weight = 1, color = "#777777",
+      #Re-add the the points.  Change size of the points by changing the
+      #radius (was ~10^MAG/10)
+      addCircles(radius = 7500, weight = 1, color = "#777777",
                  fillColor = ~pal(MAG), fillOpacity = 1, popup = ~paste(MAG)
       )
   })
