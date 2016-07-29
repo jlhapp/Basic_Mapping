@@ -7,12 +7,16 @@ library(RColorBrewer)
 #elements.  You need leafletProxy() function to modify a map that's already
 #running in a page.
 
+#This will also allow the user to change the color scheme of the points
+
 
 #Import April 2011 tornado outbreak point shapefile using readOGR
 April11pt <- readOGR(dsn = "D:/LearnR/BasicMapping/Apr11tornPT.shp", layer = "Apr11tornPT")
 
 
 #############################UI##########################################
+#bootstrap page has no content and you should use html/css regularly.
+#others should use fluidPage()
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   #call the leaflet map and specify width and height
@@ -28,6 +32,7 @@ ui <- bootstrapPage(
                 sliderInput("range", "Magnitudes", min(April11pt$MAG), max(April11pt$MAG),
                             value = range(April11pt$MAG), step = 1
                 ),
+                #Create a drop-down menu of color schemes
                 selectInput("colors", "Color Scheme",
                             rownames(subset(brewer.pal.info, category %in% c("seq", "div")))
                 ),
@@ -50,7 +55,7 @@ server <- function(input, output, session) {
     April11pt[April11pt$MAG >= input$range[1] & April11pt$MAG <= input$range[2],]
   })
   
-  
+  #Create reactive expression for color scheme on the point shapefile
   colorpal <- reactive({
     colorNumeric(input$colors, April11pt$MAG)
   })
@@ -66,7 +71,14 @@ server <- function(input, output, session) {
       fitBounds(~min(long), ~min(lat), ~max(long), ~max(lat))
   })
   
+  
+  #observe is like a reactive expression.  Observe can read reactive values
+  #and call reactive expressions...they will also re-execute automatically when 
+  #the reactive expressions change.  However, observe doesn't create a result
+  #and cannot be used as an input to other reactive. 
+  #(from: http://shiny.rstudio.com/reference/shiny/latest/observe.html)
   observe({
+    #colorpal() is used as the reactive function for the points shapefile
     pal <- colorpal()
     
     
@@ -80,15 +92,17 @@ server <- function(input, output, session) {
       #Re-add the the points.  Change size of the points by changing the
       #radius (was ~10^MAG/10)
       addCircles(radius = 7500, weight = 1, color = "#777777",
-                 fillColor = ~pal(MAG), fillOpacity = 1, popup = ~paste(MAG)
+                 #To create custom pop-up use parenthesis followed by a comma and then
+                 #use the field you want to reference that has the unique number/text.
+                 fillColor = ~pal(MAG), fillOpacity = 1, popup = ~paste("Magnitude EF", MAG, "tornado.", "Remark:", REMARK)
       )
   })
   
   observe({
     proxy <- leafletProxy("map", data = April11pt)
     
-    # Remove any existing legend, and only if the legend is
-    # enabled, create a new one.
+    #Remove any existing legend, and only if the legend is
+    #enabled, create a new one.
     proxy %>% clearControls()
     #This states if the legend checkbox is turned on...
     if (input$legend) {
