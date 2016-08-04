@@ -14,7 +14,9 @@ ui <- bootstrapPage(
                 sliderInput("range", "Magnitudes", min(Tornado11$MagNum), max(Tornado11$MagNum),
                             value = range(Tornado11$MagNum), step = 1),
                 checkboxInput("legend", "Show legend", TRUE),
-                p("The April 2011 Tornado Outbreak"),
+                #Title
+                h3("The April 2011 Tornado Outbreak"),
+                #simple text
                 p("Use the slider to change which magnitude"),
                 p("tornadoes show up on the map.  Click on a"),
                 p("tornado to view its magnitude.")
