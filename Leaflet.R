@@ -8,10 +8,11 @@ library(rgdal)
 #Add polygons by using addPolygons()
 #Add geojson by using addGeoJSON()
 #add raster by using addRasterImage()
-#addMarker()
+#Add points by using addMarker()
 #
 #When using with shiny app, you need "leafletOutput" in the ui.R file and
 #"renderLeaflet() in the server.R file.
+
 
 ############################################################################
 #############################Hurricane Leaflet##############################
@@ -180,8 +181,7 @@ leaflet() %>% addTiles() %>%
   #variable, then colors = [the color palette(i.e. pal)] and opacity
   addRasterImage(climate, colors = pal, opacity = 0.8) %>%
   #add the legend and title
-  addLegend(pal = pal, values = values(climate),
-            title = "Annual Rain")
+  addLegend(pal = pal, values = values(climate), title = "Annual Rain")
 #################################RASTER LEAFLET###########################
 ############################################################################
 
