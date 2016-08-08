@@ -4,6 +4,7 @@
 library(rgdal)
 library(sp)
 library(ggmap)
+library(ggplot2)
 
 ############################################################################
 ###########################Shapefiles########################################
@@ -19,6 +20,19 @@ proj4string(Marine)
 #Remove a projection and then set a new projection
 proj4string(Marine) <- NA_character_ #remove CRS information from Marine
 proj4string(Marine) <- CRS("+init=epsg:32119") #set projection to NAD83/NC
+
+#View the entire attribute table of the shapefile
+attributes(Marine)
+
+#Create another variable by extracting one column. First name a variable
+#followed by <-.  Then use the shapefile variable name followed by 
+#"@data$".  You will then see a drop-down of the column names.
+SeaLevel <- Marine@data$Sea_Level
+summary(SeaLevel)
+
+#To quickly change the projection information use the following code.  
+#However, spTransform should be used for reprojection.
+proj4string(Marine) <-CRS("+proj=utm +zone=10 +datum=WGS84")
 
 
 
@@ -48,7 +62,7 @@ shpData <- spTransform(states,
 
 #Verify the projection is set
 print(proj4string(states))
-
+print(proj4string(shpData))
 
 
 #Make a simple map of the states.  Plot will display in the lower
