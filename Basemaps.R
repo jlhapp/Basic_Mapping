@@ -4,6 +4,7 @@
 library(leaflet)
 library(magrittr)
 
+#Add leaflet, set view, and add tiles
 m <- leaflet() %>% 
   setView(lng = -71.0589, lat = 42.3601, zoom = 8) %>%
   addTiles() 
@@ -14,7 +15,7 @@ m %>% addProviderTiles("NASAGIBS.ViirsEarthAtNight2012")
 m %>% addProviderTiles("NASAGIBS.ModisTerraLSTDay")
 m %>% addProviderTiles("Thunderforest.TransportDark")
 m %>% addProviderTiles("HikeBike.HikeBike")
-
+m %>% addProviderTiles("MtbMap")
 
 #to set a specific date, addTile and then addProvider tiles.  Set the basemap
 #you want followed by a comma, and then options = providerTileOptions(time = )
