@@ -5,7 +5,6 @@ library(rgdal)
 library(sp)
 library(ggmap)
 
-
 ############################################################################
 ###########################csv files#########################################
 
@@ -27,7 +26,7 @@ head(UNC, 3)
 #first geocode the center location
 gc<- geocode("Durham, North Carolina")
 #then map the geocoded point
-map <- get_map(gc)
+map <- get_map((gc), zoom = 7)
 #Set the bounding box using the geocoded map
 (bb <- attr(map, "bb2"))
 (bbox <- bb2bbox (bb2))
@@ -39,30 +38,6 @@ stamMap <- get_stamenmap(bbox)
 #expression.  You must have (data = [your table], aes(x=[the x column name],
 #y=[the y column name in your table]), color="[color]")
 ggmap(map) + geom_point(data = UNC, aes(x=X, y=Y), color="red")
-########Plot x,y coordinates using ggmap
-
-
-
-
-###Plot x,y coordinates using ggplot
-library(ggplot2)
-
-#Can map x,y coordinates by themselves in two ways.
-ggplot() + geom_point(data = UNC, aes(x=X, y=Y), color="red")
-
-#OR name a variable and use plot function
-map <- ggplot() + geom_point(data = UNC, aes(x=X, y=Y), color="red")
-plot(map)
-###Plot x,y coordinates using ggplot
-
-
-
-###Map x,y coordinates on top of shapefile you have
-#map census tract shapefile of North Carolina
-Tracts <- readOGR(dsn = "D:/LearnR/BasicMapping/NC_Tracts.shp", layer = "NC_Tracts")
-plot(Tracts)
-
-###Map x,y coordinates on top of shapefile you have
 
 ###########################csv files#########################################
 ############################################################################
