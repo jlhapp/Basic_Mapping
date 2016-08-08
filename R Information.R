@@ -34,13 +34,16 @@
 #Use plot() function
 #plot() will display shapefile with no background
 #
-#If a background map is needed, use ggmap
+#If a background map is needed, use ggmap or leaflet
+#
+#Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.
+#First geocode the center of the map using geocode() command
+#Then use get_map() command and use lat/long of the variable used for the geocode.
 #
 #
 #
-#
-#
-#
+#Use the fortify() command to convert the data into a data frame if the data 
+#did not come into R as a Spatial Data Frame.
 ###############################VIEW QUICK MAP###############################
 #############################################################################
 
@@ -48,7 +51,36 @@
 
 #############################################################################
 ###############################PROJECTION##################################
-#VIEW PROJECTION INFORMATION
+#BASIC PROJECTION INFORMATION IN R
+#To view detailed Datum information type the following command in R.  This will show you
+#what the abbreviations mean.
+#projInfo(type = "datum")
+#
+#To view detailed Projection information type the following command in R
+#projInfo(type = "proj")
+#
+#To view detailed Ellipsoid information type the following command in R
+#projInfo(type = "ellps")
+#Obtain EPSG codes from (http://www.epsg-registry.org/   OR   http://spatialreference.org/)
+#
+#You will need sp and rgdal libraries to transform coordinate systems.  Here are 
+#common codes
+#WGS84 = EPSG: 4326
+#NAD83 = EPSG: 4269
+#NAD83 Zone 17 = EPSG: 26917
+#
+#When you view the projection information, you will see (if necessary) information
+#including
+#1. Projection (Latitude/Longitude, UTM/Zone, etc.)
+#2. Datum
+#3. Units
+#4. Ellipsoid
+#
+#
+#
+#
+#
+#PROJECTION INFORMATION
 #Once the shapefile is imported use thh proj4string([variable]) fucntion
 #or print(proj4string([variable])) to read the projection.
 #
@@ -66,6 +98,22 @@
 #
 #
 #You can also remove a projection using proj4string([variable]) <- NA_character_
+#
+#
+#To convert between different mapping projections and datums use the spTransform()
+#command.
+#
+#
+#
+#RASTER PROJECTION INFORMATION
+#Use the projection([variable]) function to view projection
+#
+#To set a new projection:
+#1. Create a new variable and set it to information
+#2. use the projectRaster() function
+#**Code is in the "Rasters.R" script
+#
+#
 ###############################PROJECTION##################################
 #############################################################################
 
@@ -79,6 +127,20 @@
 #To view all of the data and column heading use print([name of variable])
 #To view the first three rows of data use head([name of variable], 3)
 #
+#
+#There are two ways to map csv files into points on a map: Using ggmap or using leaflet
+#Use leaflet:
+#1. Read the csv file
+#2. Use cbind function to combine lat/long column.  A new data table will be created
+#3. Create a Spatial Points Data Frame and define the projection.  Use SPDF function
+#   set the coordinates to the variable name created in step 2, set the data to the csv
+#   file and proj4string to WGS84.
+#4. Use the spTransform function to project to NAD83 UTM17.
+#5. Add leaflet and markers.
+#**Code is available in "csv2leaflet" script.
+#
+#
+#
 #Use ggmap to display x,y coordinates on top of map
 #1. Geocode the center of a map.  variable <- geocode("North Carolina")
 #2. Map the geocoded point and set zoom level.  variable2 <- get_map((variable), zoom = 7)
@@ -88,7 +150,7 @@
 #expression.  You must have (data = [your table], aes(x=[the x column name],
 #y=[the y column name in your table]), color="[color]")
 #
-#Code on "csv.R" script
+#*Code on "csv.R" script
 #
 ##############################DISPLAY XY DATA#####################################
 #############################################################################
@@ -137,6 +199,8 @@
 #leaflet() %>% addTiles() %>%
 #addRasterImage(climate, colors = pal, opacity = 0.8) %>%
   #addLegend(pal = pal, values = values(climate), title = "Annual Rain")
+#
+#*Code in "Leaflet.R" script
 ###########################RASTER DATA######################################
 #############################################################################
 
