@@ -97,7 +97,9 @@ server <- function(input, output, session) {
       addCircles(radius = 7500, weight = 1, color = "#777777",
                  #To create custom pop-up use parenthesis followed by a comma and then
                  #use the field you want to reference that has the unique number/text.
-                 fillColor = ~pal(MAG), fillOpacity = 1, popup = ~paste("Magnitude EF", MAG, "tornado.", "Remark:", REMARK)
+                 #use "<strong>" to start bold and "</strong>" to end bold statement
+                 #use "<br>" to start a new paragraph
+                 fillColor = ~pal(MAG), fillOpacity = 1, popup = ~paste("<strong>Magnitude:</strong> EF", MAG, "tornado.", "<br><strong>Remark:</strong>", REMARK)
       )
   })
   
