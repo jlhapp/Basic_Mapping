@@ -120,8 +120,7 @@ Instead of using addPolylines, you can use the following to add various types of
 
 To save online, click Export, and Save as Webpage...it'll install some packages and save html file to your project directory.  **Code for this leaflet map is on the "Leaflet.R" script under the heading "Categorized Tornado Line Leaflet" but there are many other leaflet examples in the same script.
 
-![hurricane_line_leaflet](https://cloud.githubusercontent.com/assets/20543318/17521924/26f27508-5e23-11e6-84d5-3489898f677b.jpeg)
-
+![hurricane_line_leaflet](https://cloud.githubusercontent.com/assets/20543318/17524043/d9eb5a6a-5e2a-11e6-949b-a2e544777bce.jpeg)
 
 #Shiny
 
