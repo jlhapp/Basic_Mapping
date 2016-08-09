@@ -23,7 +23,7 @@ There are two ways to map csv files into points on a map: Using ggmap or using l
 Using leaflet:
 
 1. Read the csv file
-
+   
 2. Use cbind function to combine lat/long column.  A new data table will be created
 
 3. Create a Spatial Points Data Frame and define the projection.  Use SPDF function
@@ -180,3 +180,26 @@ When you view the projection information, you will see (if necessary) informatio
   4. Ellipsoid
  
 Once the shapefile is imported use the proj4string([variable]) fucntion or print(proj4string([variable])) to read the projection.  If there is no projection or since readShapePoly will not read the projection file, you will get a result of [1] NA.
+
+THREE WAYS TO SET PROJECTION
+  1. Use proj4string([variable]) <- "+proj=utm +zone=14 +datum=WGS84 +units=m" function
+  2. Use proj4string([variable]) <- CRS(+init=epsg:32119") function
+  3. Or create a new variable using spTransform function.  For example: shpData <- spTransform(states, CRS("+proj=longlat +datum=WGS84")) 
+
+**You can't use the third way if no projection is set...you'd need to use the first method.**
+
+You can also remove a projection using proj4string([variable]) <- NA_character_
+
+To convert between different mapping projections and datums use the spTransform() command.
+
+
+RASTER PROJECTION INFORMATION
+
+Use the projection([variable]) function to view projection
+
+To set a new projection:
+
+  1. Create a new variable and set it to information
+  2. use the projectRaster() function
+
+**Code is in the "Rasters.R" script
