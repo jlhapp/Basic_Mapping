@@ -1,4 +1,25 @@
 # Basic_Mapping
+IMPORT SHAPEFILE
+
+Use rgdal package and the readOGR function.  This will read the projection file.
+[variable name]<- readOGR(dsn = "folder location with .shp extension", layer ="name only")
+
+
+Use maptools package and readShapePoly function.  This will NOT read the projection 
+file and you will need to set the projection.
+[variable name]<- readShapePoly("folder location with .shp extension")
+
+VIEW MAP
+
+Use plot() function
+plot() will display shapefile with no background
+
+If a background map is needed, use ggmap or leaflet
+
+Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.
+First geocode the center of the map using geocode() command
+Then use get_map() command 
+
 #CSV Files
 ADD XY INFORMATION FROM CSV FILE
 You need to have x,y coordinates in the csv file, each as separate columns.
@@ -21,6 +42,7 @@ Use leaflet:
 4. Use the spTransform function to project to NAD83 UTM17.
 
 5. Add leaflet and markers.
+
 **Code is available in "csv2leaflet" script.
 
 
