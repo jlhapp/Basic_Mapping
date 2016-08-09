@@ -15,15 +15,12 @@ Use plot() function to view the map.  The plot() function will display the shape
 Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.  First geocode the center of the map using geocode() command.  Then use get_map() command 
 
 #CSV Files
-ADD XY INFORMATION FROM CSV FILE
-You need to have x,y coordinates in the csv file, each as separate columns.
-Import csv into R using read.csv("file location and extension")
+In order to add xy information from a csv file, you need to have x,y coordinates in the csv file, separating x and y into two columns.  Import csv into R using read.csv("file location and extension")
 To view all of the data and column heading use print([name of variable])
 To view the first three rows of data use head([name of variable], 3)
 
-
 There are two ways to map csv files into points on a map: Using ggmap or using leaflet
-Use leaflet:
+Using leaflet:
 
 1. Read the csv file
 
@@ -50,16 +47,53 @@ Use ggmap to display x,y coordinates on top of map
 expression.  You must have (data = [your table], aes(x=[the x column name],
 y=[the y column name in your table]), color="[color]")
 
-*Code on "csv.R" script and you will get a result like this:
+**Code on "csv.R" script and you will get a result like this:
 ![csv2](https://cloud.githubusercontent.com/assets/20543318/17521919/239a0ccc-5e23-11e6-8ae2-2b9e2a657216.jpeg)
 
 
 #Rasters
+Use either raster library or sp package to import data.
 
+1. RASTER LIBRARY
+   
+   a. Using the raster package will return a RasterLayout object and you will need to visualize using the plot() function
+   
+   b. To import name a variable and use raster() function 
+      variable <- raster("folder location.tif")
+   
+   c. To view the map with a legend, use plot()
+      plot(variable)
+
+2. SP PACKAGE
+   
+   a. using the SP package will return a SpatialGridDataFrame and you will need to visualize using the spplot() function.
+   
+   b. To import name a variable and use readGDAL() function
+      variable <- readGDAL("folder location.tif")
+   
+   c. To view the map with a legend, use spplot()
+      spplot(variable)
+
+Code on "Rasters.R" script
+
+
+RASTERS IN LEAFLET
+
+Use raster() to import layer.  You need to specify color scheme use <- colorNumeric function.  Name variable 'pal' use <- operator and colorNumeric funtion.  Then specify color scheme choices using "c()", set values to the raster variable and any part of the raster that has no value to transparent.  For example:
+
+pal <- colorNumeric(c("#0C2C84", "#41B6C4", "#FFFFCC"), values([variable]), na.color = "transparent")
+
+Now that there's a variable named pal for the color scheme we can add this to leaflet.  First add leaflet() and  tiles() separated by %>% operator.  Then add the raster using the "addRasterImage()."  Within addRasterImage, you'll need to first specify the data, colors = [variable from color scheme above], and opacity.  Then you can add legend if you'd like.  For example:
+
+leaflet() %>% addTiles() %>%
+addRasterImage(climate, colors = pal, opacity = 0.8) %>%
+  addLegend(pal = pal, values = values(climate), title = "Annual Rain")
+
+*You will get a result that looks like this.  Code is in "Leaflet.R" script
 ![raster_leaflet](https://cloud.githubusercontent.com/assets/20543318/17521927/2b5cd548-5e23-11e6-9561-62258babb455.jpeg)
 
 #Mapping in Leaflet
-This section covers shapefiles; for rasters, see RASTER DATA.  There are many ways to display leaflet map.  If you want a simple map:
+This section covers shapefiles; for rasters, see RASTER.  There are many ways to display leaflet map.  If you want a simple map:
 leaflet() %>% addPolylines(data = [variable])
 
 This will have no tiles, view set, but a leaflet map will appear
@@ -94,3 +128,5 @@ The tornado tracks (lines) were downloaded from NOAA Southern Region Headquarter
 CSV file of UNC schools were created by looking up individual schools and obtaining xy coordinates using ArcGIS for Desktop's "Add XY Coordinates" tool.
 
 The raster file used in all the raster examples were obtained from the Natural Resources Conservation Service GeoSpatial Gateway (https://gdg.sc.egov.usda.gov/GDGHome.aspx).  It was obtained at the state level, 1981-2010 Annual Average Raster Precip and Temp (Climate PrismRaster dataset).
+
+Hurricane data was obtained from the NOAA National Centers for Environmental Information (http://www.ncdc.noaa.gov/ibtracs/index.php?name=ibtracs-data)
