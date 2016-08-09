@@ -4,21 +4,15 @@ IMPORT SHAPEFILE
 Use rgdal package and the readOGR function.  This will read the projection file.
 [variable name]<- readOGR(dsn = "folder location with .shp extension", layer ="name only")
 
-
 Use maptools package and readShapePoly function.  This will NOT read the projection 
 file and you will need to set the projection.
 [variable name]<- readShapePoly("folder location with .shp extension")
 
 VIEW MAP
 
-Use plot() function
-plot() will display shapefile with no background
+Use plot() function to view the map.  The plot() function will display the shapefile with no background.  If a background map is needed, use ggmap or leaflet.
 
-If a background map is needed, use ggmap or leaflet
-
-Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.
-First geocode the center of the map using geocode() command
-Then use get_map() command 
+Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.  First geocode the center of the map using geocode() command.  Then use get_map() command 
 
 #CSV Files
 ADD XY INFORMATION FROM CSV FILE
@@ -95,11 +89,8 @@ To save online, click Export, and Save as Webpage...it'll install some packages 
 ![shiny_points](https://cloud.githubusercontent.com/assets/20543318/17521928/2d4a8404-5e23-11e6-9b13-aeb6651ff7eb.JPG)
 
 #Data Sources used
-I dowloaded tornado tracks (lines) from NOAA Southern Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/
-I then converted the kml file to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.
-
-I downloaded the tornado storm reports from NOAA Souther Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/
+The tornado tracks (lines) were downloaded from NOAA Southern Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/   The files were then converted from kml to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.  The tornado storm reports (points) were downloaded from NOAA Souther Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/
 
 CSV file of UNC schools were created by looking up individual schools and obtaining xy coordinates using ArcGIS for Desktop's "Add XY Coordinates" tool.
 
-The raster file used in all the raster examples were obtained from the PRISM dataset.
+The raster file used in all the raster examples were obtained from the Natural Resources Conservation Service GeoSpatial Gateway (https://gdg.sc.egov.usda.gov/GDGHome.aspx).  It was obtained at the state level, 1981-2010 Annual Average Raster Precip and Temp (Climate PrismRaster dataset).
