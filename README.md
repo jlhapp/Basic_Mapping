@@ -107,10 +107,15 @@ data (polygons, lines) that you need.  For example:
 MyMap %>% addPolylines(data = April11_1) 
 
 Instead of using addPolylines, you can use the following to add various types of data:
+
 -Add lines by using addPolylines()
+
 -Add polygons by using addPolygons()
+
 -Add geojson by using addGeoJSON()
+
 -Add raster by using addRasterImage()
+
 -Add points by using addMarker()
 
 To save online, click Export, and Save as Webpage...it'll install some packages and save html file to your project directory.  **Code for this leaflet map is on the "Leaflet.R" script under the heading "Categorized Tornado Line Leaflet" but there are many other leaflet examples in the same script.
