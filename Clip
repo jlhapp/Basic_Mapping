@@ -1,30 +1,33 @@
 #This script clips a large point shapefile (both within the US and in the Atlantic Ocean)
-#to states polygon.
+#of Hurricane points to states polygon.
 #Import rgdal
 library(rgdal)
 
-#Import point weather stations
-Marine <- readOGR(dsn = "D:/LearnR/BasicMapping/WeatherStations.shp", layer = "WeatherStations")
+#Import point Hurricane data
+Hurricane <- readOGR(dsn = "D:/LearnR/BasicMapping/Hurricane.shp", layer = "Hurricane")
 
 #Import states polygon
 states <- readOGR(dsn = "D:\\DesktopStuff\\R\\Shapefiles\\UnitedStates.shp", layer = "UnitedStates")
 
 #View the extents for both layers
-bbox(Marine)
+bbox(Hurricane)
 bbox(states)
 
-#Create a new Marine layer and project the new layer to the polygon layer
-MarinePrj <- spTransform(Marine, CRSobj = CRS(proj4string(states)))
+#Create a new Hurricane layer and project the new layer to the polygon layer
+HurricanePrj <- spTransform(Hurricane, CRSobj = CRS(proj4string(states)))
 
 #View the new layers extent
-bbox(MarinePrj)
+bbox(HurricanePrj)
 
 #Plot both points and polygons to ensure the the CRS transformation worked.
 plot(states)
-points(MarinePrj)
+points(HurricanePrj)
 
 #Create new object and set the newly projected layer to the polygon
-MarineCL <- MarinePrj[states, ]
+HurricaneCL <- HurricanePrj[states, ]
+
+#View the new layer to verify the clip worked.
+plot(HurricaneCL)
 
 #View the new layer to verify the clip worked.
 plot(MarineCL)
