@@ -1,5 +1,5 @@
 # Basic Mapping
-IMPORT SHAPEFILE
+*IMPORT SHAPEFILE*
 
 Use rgdal package and the readOGR function.  This will read the projection file.
 [variable name]<- readOGR(dsn = "folder location with .shp extension", layer ="name only")
@@ -8,7 +8,7 @@ Use maptools package and readShapePoly function.  This will NOT read the project
 file and you will need to set the projection.
 [variable name]<- readShapePoly("folder location with .shp extension")
 
-VIEW MAP
+*VIEW MAP*
 
 Use plot() function to view the map.  The plot() function will display the shapefile with no background.  If a background map is needed, use ggmap or leaflet.
 
@@ -20,7 +20,8 @@ To view all of the data and column heading use print([name of variable])
 To view the first three rows of data use head([name of variable], 3)
 
 There are two ways to map csv files into points on a map: Using ggmap or using leaflet
-Using leaflet:
+
+*Using leaflet:*
 
   1. Read the csv file
   2. Use cbind function to combine lat/long column.  A new data table will be created
@@ -32,7 +33,7 @@ Using leaflet:
 
 ![csv](https://cloud.githubusercontent.com/assets/20543318/17519129/9ac0e95c-5e18-11e6-9cc6-daf8cc0d138a.JPG)
 
-Use ggmap to display x,y coordinates on top of map
+*Using ggmap to display x,y coordinates on top of a Google map:*
   1. Geocode the center of a map.  variable <- geocode("North Carolina")
   2. Map the geocoded point and set zoom level.  variable2 <- get_map((variable), zoom = 7)
   3. Set bounding box using goeocded map
@@ -161,7 +162,7 @@ When you view the projection information, you will see (if necessary) informatio
  
 Once the shapefile is imported use the proj4string([variable]) fucntion or print(proj4string([variable])) to read the projection.  If there is no projection or since readShapePoly will not read the projection file, you will get a result of [1] NA.
 
-THREE WAYS TO SET PROJECTION
+*THREE WAYS TO SET PROJECTION*
   1. Use proj4string([variable]) <- "+proj=utm +zone=14 +datum=WGS84 +units=m" function
   2. Use proj4string([variable]) <- CRS(+init=epsg:32119") function
   3. Or create a new variable using spTransform function.  For example: shpData <- spTransform(states, CRS("+proj=longlat +datum=WGS84")) 
@@ -173,7 +174,7 @@ You can also remove a projection using proj4string([variable]) <- NA_character_
 To convert between different mapping projections and datums use the spTransform() command.
 
 
-RASTER PROJECTION INFORMATION
+*RASTER PROJECTION INFORMATION*
 
 Use the projection([variable]) function to view projection
 
