@@ -160,3 +160,9 @@ To convert to a shapefile in R, first load tmap and geojsonio libraries
    geojson_write(shp, file = "D:/tmp/shp.geojson")
 
 To import GeoJSON files in leaflet use readLines function.  **Code is available in "Shapefile2GeoJSON.R" script.
+
+
+#Basemaps
+Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the ["Leaflet extras github"][5] webpage.
+
+[5]: http://leaflet-extras.github.io/leaflet-providers/preview/index.html
