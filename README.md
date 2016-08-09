@@ -22,30 +22,22 @@ To view the first three rows of data use head([name of variable], 3)
 There are two ways to map csv files into points on a map: Using ggmap or using leaflet
 Using leaflet:
 
-1. Read the csv file
-   
-2. Use cbind function to combine lat/long column.  A new data table will be created
-
-3. Create a Spatial Points Data Frame and define the projection.  Use SPDF function
-   set the coordinates to the variable name created in step 2, set the data to the csv
-   file and proj4string to WGS84.
-
-4. Use the spTransform function to project to NAD83 UTM17.
-
-5. Add leaflet and markers.
+  1. Read the csv file
+  2. Use cbind function to combine lat/long column.  A new data table will be created
+  3. Create a Spatial Points Data Frame and define the projection.  Use SPDF function set the coordinates to the variable name created in step 2, set the data to the csv file and proj4string to WGS84.
+  4. Use the spTransform function to project to NAD83 UTM17.
+  5. Add leaflet and markers.
 
 **Code is available in "csv2leaflet" script and you will get a result like this:
 
 ![csv](https://cloud.githubusercontent.com/assets/20543318/17519129/9ac0e95c-5e18-11e6-9cc6-daf8cc0d138a.JPG)
 
 Use ggmap to display x,y coordinates on top of map
-1. Geocode the center of a map.  variable <- geocode("North Carolina")
-2. Map the geocoded point and set zoom level.  variable2 <- get_map((variable), zoom = 7)
-3. Set bounding box using goeocded map
-4. Get the Stamenmap using the bounding box
-5. #use the created map in ggmap and add the UNC table using the "geo_point"
-expression.  You must have (data = [your table], aes(x=[the x column name],
-y=[the y column name in your table]), color="[color]")
+  1. Geocode the center of a map.  variable <- geocode("North Carolina")
+  2. Map the geocoded point and set zoom level.  variable2 <- get_map((variable), zoom = 7)
+  3. Set bounding box using goeocded map
+  4. Get the Stamenmap using the bounding box
+  5. #use the created map in ggmap and add the UNC table using the "geo_point" expression.  You must have (data = [your table], aes(x=[the x column name], y=[the y column name in your table]), color="[color]")
 
 **Code on "csv.R" script and you will get a result like this:
 ![csv2](https://cloud.githubusercontent.com/assets/20543318/17521919/239a0ccc-5e23-11e6-8ae2-2b9e2a657216.jpeg)
@@ -56,25 +48,18 @@ Use either raster library or sp package to import data.
 
 1. RASTER LIBRARY
    
-   a. Using the raster package will return a RasterLayout object and you will need to visualize using the plot() function
-   
-   b. To import name a variable and use raster() function 
-      variable <- raster("folder location.tif")
-   
-   c. To view the map with a legend, use plot()
-      plot(variable)
+ - Using the raster package will return a RasterLayout object and you will need to visualize using the plot() function
+ - To import name a variable and use raster() function.  For example:   variable <- raster("folder location.tif")
+ - To view the map with a legend, use plot().  For example:  plot(variable)
 
 2. SP PACKAGE
    
-   a. using the SP package will return a SpatialGridDataFrame and you will need to visualize using the spplot() function.
-   
-   b. To import name a variable and use readGDAL() function
-      variable <- readGDAL("folder location.tif")
-   
-   c. To view the map with a legend, use spplot()
-      spplot(variable)
+ - Using the SP package will return a SpatialGridDataFrame and you will need to visualize using the spplot() function.
+ - To import name a variable and use readGDAL() function.   For example:   variable <- readGDAL("folder location.tif")
+ - To view the map with a legend, use spplot().  For example:  spplot(variable)
 
 Code on "Rasters.R" script
+
 
 
 RASTERS IN LEAFLET
@@ -89,7 +74,7 @@ leaflet() %>% addTiles() %>%
 addRasterImage(climate, colors = pal, opacity = 0.8) %>%
   addLegend(pal = pal, values = values(climate), title = "Annual Rain")
 
-*You will get a result that looks like this.  Code is in "Leaflet.R" script
+*You will get a result that looks like this.  Code is in "Leaflet.R" script under "RASTER LEAFLET" section. 
 ![raster_leaflet](https://cloud.githubusercontent.com/assets/20543318/17521927/2b5cd548-5e23-11e6-9561-62258babb455.jpeg)
 
 #Mapping in Leaflet
@@ -98,16 +83,11 @@ leaflet() %>% addPolylines(data = [variable])
 
 This will have no tiles, view set, but a leaflet map will appear
 
-If you want a customized map, create a new variable and set leaflet(), setView(),
-and tiles.  You'll want the basics for this portion.  For example:
-MyMap <- leaflet() %>% setView(lng = -78.2589, lat = 35.9601, zoom = 8)  %>% addTiles()
+If you want a customized map, create a new variable and set leaflet(), setView(), and tiles.  You'll want the basics for this portion.  For example: MyMap <- leaflet() %>% setView(lng = -78.2589, lat = 35.9601, zoom = 8)  %>% addTiles()
 
-Now all you need to do is write MyMap follow by the maggitr operator and add
-data (polygons, lines) that you need.  For example:
-MyMap %>% addPolylines(data = April11_1) 
+Now all you need to do is write MyMap follow by the maggitr operator and add data (polygons, lines) that you need.  For example: MyMap %>% addPolylines(data = April11_1) 
 
 Instead of using addPolylines, you can use the following to add various types of data:
-
   - Add lines by using addPolylines()
   - Add polygons by using addPolygons()
   - Add geojson by using addGeoJSON()
