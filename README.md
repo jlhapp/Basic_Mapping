@@ -114,12 +114,15 @@ CSV file of UNC schools were created by looking up individual schools and obtain
 
 The raster file used in all the raster examples were obtained from the [Natural Resources Conservation Service GeoSpatial Gateway][3].  It was obtained at the state level, 1981-2010 Annual Average Raster Precip and Temp (Climate PrismRaster dataset).
 
-Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4] 
+Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4].
+
+State polygon files were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]
 
 [1]: http://www.srh.noaa.gov/srh/ssd/mapping/
 [2]: http://www.srh.noaa.gov/srh/ssd/mapping/
 [3]: https://gdg.sc.egov.usda.gov/GDGHome.aspx
 [4]: http://www.ncdc.noaa.gov/ibtracs/index.php?name=ibtracs-data
+[7]: https://www.census.gov/geo/maps-data/data/tiger-line.html
 
 
 #GeoJSON Files
