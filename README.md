@@ -14,6 +14,10 @@ Use plot() function to view the map.  The plot() function will display the shape
 
 Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.  First geocode the center of the map using geocode() command.  Then use get_map() command 
 
+*CLIP TWO SHAPEFILE LAYERS*
+
+Import both shapefile layers.  View the extents of both layers using bbox() function.  If need be, use the spTransform function to project one layer to the other layer.  Create new object and set the newly projected layer to the polygon.  **Code is in the "Clip.R" script.
+
 #CSV Files
 In order to add xy information from a csv file, you need to have x,y coordinates in the csv file, separating x and y into two columns.  Import csv into R using read.csv("file location and extension")
 To view all of the data and column heading use print([name of variable])
