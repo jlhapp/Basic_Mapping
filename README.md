@@ -127,10 +127,15 @@ To save online, click Export, and Save as Webpage...it'll install some packages 
 ![shiny_points](https://cloud.githubusercontent.com/assets/20543318/17521928/2d4a8404-5e23-11e6-9b13-aeb6651ff7eb.JPG)
 
 #Data Sources used
-The tornado tracks (lines) were downloaded from NOAA Southern Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/   The files were then converted from kml to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.  The tornado storm reports (points) were downloaded from NOAA Souther Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/
+The tornado tracks (lines) were downloaded from [NOAA Southern Region Headquarters][1].   The files were then converted from kml to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.  The tornado storm reports (points) were downloaded from [NOAA Southern Region Headquarters][2].
 
 CSV file of UNC schools were created by looking up individual schools and obtaining xy coordinates using ArcGIS for Desktop's "Add XY Coordinates" tool.
 
-The raster file used in all the raster examples were obtained from the Natural Resources Conservation Service GeoSpatial Gateway (https://gdg.sc.egov.usda.gov/GDGHome.aspx).  It was obtained at the state level, 1981-2010 Annual Average Raster Precip and Temp (Climate PrismRaster dataset).
+The raster file used in all the raster examples were obtained from the [Natural Resources Conservation Service GeoSpatial Gateway][3].  It was obtained at the state level, 1981-2010 Annual Average Raster Precip and Temp (Climate PrismRaster dataset).
 
-Hurricane data was obtained from the NOAA National Centers for Environmental Information (http://www.ncdc.noaa.gov/ibtracs/index.php?name=ibtracs-data)
+Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4] 
+
+[1]: http://www.srh.noaa.gov/srh/ssd/mapping/
+[2]: http://www.srh.noaa.gov/srh/ssd/mapping/
+[3]: https://gdg.sc.egov.usda.gov/GDGHome.aspx
+[4]: http://www.ncdc.noaa.gov/ibtracs/index.php?name=ibtracs-data
