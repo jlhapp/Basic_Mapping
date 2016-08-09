@@ -1,4 +1,4 @@
-# Basic_Mapping
+# Basic Mapping
 IMPORT SHAPEFILE
 
 Use rgdal package and the readOGR function.  This will read the projection file.
@@ -64,7 +64,28 @@ y=[the y column name in your table]), color="[color]")
 
 ![raster_leaflet](https://cloud.githubusercontent.com/assets/20543318/17521927/2b5cd548-5e23-11e6-9561-62258babb455.jpeg)
 
-#Leaflet
+#Mapping in Leaflet
+This section covers shapefiles; for rasters, see RASTER DATA.  There are many ways to display leaflet map.  If you want a simple map:
+leaflet() %>% addPolylines(data = [variable])
+
+This will have no tiles, view set, but a leaflet map will appear
+
+If you want a customized map, create a new variable and set leaflet(), setView(),
+and tiles.  You'll want the basics for this portion.  For example:
+MyMap <- leaflet() %>% setView(lng = -78.2589, lat = 35.9601, zoom = 8)  %>% addTiles()
+
+Now all you need to do is write MyMap follow by the maggitr operator and add
+data (polygons, lines) that you need.  For example:
+MyMap %>% addPolylines(data = April11_1) 
+
+Instead of using addPolylines, you can use the following to add various types of data:
+-Add lines by using addPolylines()
+-Add polygons by using addPolygons()
+-Add geojson by using addGeoJSON()
+-Add raster by using addRasterImage()
+-Add points by using addMarker()
+
+To save online, click Export, and Save as Webpage...it'll install some packages and save html file to your project directory.  **Code for this leaflet map is on the "Leaflet.R" script under the heading "Categorized Tornado Line Leaflet" but there are many other leaflet examples in the same script.
 
 ![hurricane_line_leaflet](https://cloud.githubusercontent.com/assets/20543318/17521924/26f27508-5e23-11e6-84d5-3489898f677b.jpeg)
 
@@ -72,3 +93,13 @@ y=[the y column name in your table]), color="[color]")
 #Shiny
 
 ![shiny_points](https://cloud.githubusercontent.com/assets/20543318/17521928/2d4a8404-5e23-11e6-9b13-aeb6651ff7eb.JPG)
+
+#Data Sources used
+I dowloaded tornado tracks (lines) from NOAA Southern Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/
+I then converted the kml file to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.
+
+I downloaded the tornado storm reports from NOAA Souther Region Headquarters: http://www.srh.noaa.gov/srh/ssd/mapping/
+
+CSV file of UNC schools were created by looking up individual schools and obtaining xy coordinates using ArcGIS for Desktop's "Add XY Coordinates" tool.
+
+The raster file used in all the raster examples were obtained from the PRISM dataset.
