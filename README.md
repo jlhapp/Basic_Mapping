@@ -108,15 +108,11 @@ MyMap %>% addPolylines(data = April11_1)
 
 Instead of using addPolylines, you can use the following to add various types of data:
 
--Add lines by using addPolylines()
-
--Add polygons by using addPolygons()
-
--Add geojson by using addGeoJSON()
-
--Add raster by using addRasterImage()
-
--Add points by using addMarker()
+  - Add lines by using addPolylines()
+  - Add polygons by using addPolygons()
+  - Add geojson by using addGeoJSON()
+  - Add raster by using addRasterImage()
+  - Add points by using addMarker()
 
 To save online, click Export, and Save as Webpage...it'll install some packages and save html file to your project directory.  **Code for this leaflet map is on the "Leaflet.R" script under the heading "Categorized Tornado Line Leaflet" but there are many other leaflet examples in the same script.
 
@@ -149,15 +145,9 @@ Users can convert a shapefile to a GeoJSON file using QGIS or in R.  To convert 
 
 To convert to a shapefile in R, first load tmap and geojsonio libraries
 
-1. Name variable and use read_shape.  For example:
-   shp = read_shape("file location.shp")
-
-2. Plot shp data using qtm expression.
-   qtm(shp)
-
-3. Use the geojson_write expression followed by ([current file extension],
-   file = "[file path]").  For example
-   geojson_write(shp, file = "D:/tmp/shp.geojson")
+   1. Name variable and use read_shape.  For example:   shp = read_shape("file location.shp") 
+   2. Plot shp data using qtm expression. For example:   qtm(shp)
+   3. Use the geojson_write expression followed by ([current file extension],  file = "[file path]").  For example geojson_write(shp, file = "D:/tmp/shp.geojson")
 
 To import GeoJSON files in leaflet use readLines function.  **Code is available in "Shapefile2GeoJSON.R" script.
 
@@ -166,3 +156,27 @@ To import GeoJSON files in leaflet use readLines function.  **Code is available 
 Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the ["Leaflet extras github"][5] webpage.
 
 [5]: http://leaflet-extras.github.io/leaflet-providers/preview/index.html
+
+#Projections in R
+To view detailed Datum information type the following command in R.  This will show you what the abbreviations mean: projInfo(type = "datum")
+
+To view detailed Projection information type the following command in R: projInfo(type = "proj")
+
+To view detailed Ellipsoid information type the following command in R: projInfo(type = "ellps")
+
+Obtain EPSG codes from the [EPSG Geodetic Parameter Registry][6] website.
+[6]: http://www.epsg-registry.org
+
+You will need sp and rgdal libraries to transform coordinate systems.  Here are common codes used in the United States and North Carolina.
+ - WGS84 = EPSG: 4326
+ - NAD83 = EPSG: 4269
+ - NAD83 Zone 17 = EPSG: 26917
+
+
+When you view the projection information, you will see (if necessary) information including:
+  1. Projection (Latitude/Longitude, UTM/Zone, etc.)
+  2. Datum
+  3. Units
+  4. Ellipsoid
+ 
+Once the shapefile is imported use the proj4string([variable]) fucntion or print(proj4string([variable])) to read the projection.  If there is no projection or since readShapePoly will not read the projection file, you will get a result of [1] NA.
