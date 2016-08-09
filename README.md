@@ -16,7 +16,7 @@ Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.  Firs
 
 *CLIP TWO SHAPEFILE LAYERS*
 
-Import both shapefile layers.  View the extents of both layers using bbox() function.  If need be, use the spTransform function to project one layer to the other layer.  Create new object and set the newly projected layer to the polygon.  **Code is in the "Clip.R" script and you will get a result like this:
+Import both shapefile layers.  View the extents of both layers using bbox() function.  If need be, use the spTransform function to project one layer to the other layer.  Create new object and set the newly projected layer to the polygon.  In order to export the new spatial data frame to a shapefile, use writeOGR command.  **Code is in the "Clip.R" script and you will get a result like this:
 
 ![clip](https://cloud.githubusercontent.com/assets/20543318/17530536/f3403420-5e45-11e6-8718-1ff37892d617.jpg)
 
