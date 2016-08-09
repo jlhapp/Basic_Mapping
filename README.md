@@ -27,7 +27,7 @@ There are two ways to map csv files into points on a map: Using ggmap or using l
 
 *Using leaflet:*
 
-  1. Read the csv file
+  1. Read the csv file and load the leaflet library
   2. Use cbind function to combine lat/long column.  A new data table will be created
   3. Create a Spatial Points Data Frame and define the projection.  Use SPDF function set the coordinates to the variable name created in step 2, set the data to the csv file and proj4string to WGS84.
   4. Use the spTransform function to project to NAD83 UTM17.
@@ -67,7 +67,7 @@ Code on "Rasters.R" script
 
 
 
-RASTERS IN LEAFLET
+*RASTERS IN LEAFLET*
 
 Use raster() to import layer.  You need to specify color scheme use <- colorNumeric function.  Name variable 'pal' use <- operator and colorNumeric funtion.  Then specify color scheme choices using "c()", set values to the raster variable and any part of the raster that has no value to transparent.  For example:
 
