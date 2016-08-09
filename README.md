@@ -139,3 +139,24 @@ Hurricane data was obtained from the [NOAA National Centers for Environmental In
 [2]: http://www.srh.noaa.gov/srh/ssd/mapping/
 [3]: https://gdg.sc.egov.usda.gov/GDGHome.aspx
 [4]: http://www.ncdc.noaa.gov/ibtracs/index.php?name=ibtracs-data
+
+
+#GeoJSON Files
+
+The primary benefits of using GeoJSON is that it is a JavaScript object with geographic data.  Also, leaflet is designed to work natively with GeoJSON.
+
+Users can convert a shapefile to a GeoJSON file using QGIS or in R.  To convert in QGIS, right click on layer and select Save As.  Change the file type to GeoJSON.
+
+To convert to a shapefile in R, first load tmap and geojsonio libraries
+
+1. Name variable and use read_shape.  For example:
+   shp = read_shape("file location.shp")
+
+2. Plot shp data using qtm expression.
+   qtm(shp)
+
+3. Use the geojson_write expression followed by ([current file extension],
+   file = "[file path]").  For example
+   geojson_write(shp, file = "D:/tmp/shp.geojson")
+
+To import GeoJSON files in leaflet use readLines function.  **Code is available in "Shapefile2GeoJSON.R" script.
