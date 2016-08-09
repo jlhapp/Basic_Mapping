@@ -43,9 +43,9 @@ Use leaflet:
 
 5. Add leaflet and markers.
 
-**Code is available in "csv2leaflet" script.
+**Code is available in "csv2leaflet" script and you will get a result like this:
 
-
+![csv](https://cloud.githubusercontent.com/assets/20543318/17519129/9ac0e95c-5e18-11e6-9cc6-daf8cc0d138a.JPG)
 
 Use ggmap to display x,y coordinates on top of map
 1. Geocode the center of a map.  variable <- geocode("North Carolina")
@@ -56,12 +56,9 @@ Use ggmap to display x,y coordinates on top of map
 expression.  You must have (data = [your table], aes(x=[the x column name],
 y=[the y column name in your table]), color="[color]")
 
-*Code on "csv.R" script
-
-
-![csv](https://cloud.githubusercontent.com/assets/20543318/17519129/9ac0e95c-5e18-11e6-9cc6-daf8cc0d138a.JPG)
-
+*Code on "csv.R" script and you will get a result like this:
 ![csv2](https://cloud.githubusercontent.com/assets/20543318/17521919/239a0ccc-5e23-11e6-8ae2-2b9e2a657216.jpeg)
+
 
 #Rasters
 
