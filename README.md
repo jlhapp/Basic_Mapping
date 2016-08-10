@@ -21,7 +21,7 @@ First import both shapefile layers and view the extents of both layers using bbo
 
 *MERGE TWO SHAPEFILE LAYERS TOGETHER*
 
-You will need the rgdal, raster, rgeos libraries.  Import both shapefiles using readOGR.  Finally, use the union([shp1], [shp2]) and plot the result.  **Code is available in the "Merge.R" script.
+You will need the rgdal, raster, rgeos libraries.  Import both shapefiles using readOGR.  Finally, use the union(*shp1*, *shp2*) and plot the result.  **Code is available in the "Merge.R" script.
 
 #CSV Files
 In order to add xy information from a csv file, you need to have x,y coordinates in the csv file, separating x and y into two columns.  Import csv into R using read.csv("file location and extension").  To view all of the data and column heading use print(*object*).  To view the first three rows of data use head(*object name*, 3)
@@ -45,7 +45,7 @@ There are two ways to map csv files into points on a map: using ggmap or using l
   2. Map the geocoded point and set zoom level.  *object2* <- get_map((*object1*), zoom = 7)
   3. Set bounding box using goeocded map.
   4. Get the Stamenmap using the bounding box.
-  5. Use the created map in ggmap and add the UNC table using the "geo_point" expression.  You must have (data = [your table], aes(x=[the x column name], y=[the y column name in your table]), color="[color]")
+  5. Use the created map in ggmap and add the UNC table using the "geo_point" expression.  You must have (data = *your table*, aes(x=*x column name*, y=*y column name*), color="*color*")
 
 **Code is on "csv.R" script and you will get a result like this:
 ![csv2](https://cloud.githubusercontent.com/assets/20543318/17521919/239a0ccc-5e23-11e6-8ae2-2b9e2a657216.jpeg)
@@ -126,7 +126,7 @@ To convert to a shapefile in R, first load tmap and geojsonio libraries
 
    1. Name object and use read_shape.  For example:   shp = read_shape("file location.shp") 
    2. Plot shp data using qtm expression.  qtm is the tmap's version of plotting a map. For example:   qtm(shp)
-   3. Use the geojson_write expression followed by ([current file extension],  file = "[file path]").  For example geojson_write(shp, file = "D:/tmp/shp.geojson")
+   3. Use the geojson_write expression followed by (*current file extension*,  file = "*file path*").  For example geojson_write(shp, file = "D:/tmp/shp.geojson")
 
 To import GeoJSON files in leaflet use readLines function.  **Code is available in "Shapefile2GeoJSON.R" script.
 
