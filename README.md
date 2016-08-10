@@ -27,6 +27,10 @@ You will need the rgdal, raster, rgeos libraries.  First import both shapefiles 
 
 You will need the sp library.  First import the shapefile and csv files using readOGR() function and read.csv() function respectively.  Note the names of the fields/columns that you will need to merge the two datasets together.  Name a new object and use the merge() function.  The csv fields will essentially be appended to the end of the shapefile fields/columns.  **Code is available in the "AttributeJoin.R" script.  
 
+*SPATIAL JOIN ON POINT AND POLYGON LAYERS*
+
+Import the rgdal library and both shapefiles.  Use the over() function to return the rows for the column you specify.  Then join back the new data created from the over() function by creating a new variable with a new column that you create.  **See "Spatial_Join.R" script to view an example.
+
 #CSV Files
 In order to add xy information from a csv file, you need to have x, y coordinates in the csv file, separating the x and y coordinates into two columns.  Import the csv file into R using read.csv("file location and extension").  To view all of the data and column headings, use the print() function.  To view the first three rows of data use the head function.  For example: head(*object name*, 3)
 
@@ -133,7 +137,7 @@ To convert a shapefile to a GeoJSON file in R, first load tmap and geojsonio lib
    2. Plot "shp" object using qtm expression.  qtm is the tmap's version of plotting a map. For example:   qtm(shp)
    3. Use the geojson_write() function with the following code in the function (*current file extension*,  file = "*file path*").  For example geojson_write(shp, file = "D:/tmp/shp.geojson")
 
-To import GeoJSON files in leaflet use the readLines() function.  **Code is available in "Shapefile2GeoJSON.R" script.
+To import GeoJSON files in leaflet use the readLines() function.  **Code for GeoJSON conversion is available in "Shapefile2GeoJSON.R" script and the GeoJSON example in leaflet is available in the "GeoJSON.R" script.
 
 #Basemaps
 Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the [Leaflet extras github][5] webpage.  **For examples of using different basemaps, see the "Basemaps.R" code.
