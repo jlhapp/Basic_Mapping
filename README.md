@@ -9,9 +9,9 @@ Use maptools package and readShapePoly function.  The readShapePoly function wil
 
 *VIEW MAP*
 
-Use plot() function to view the map.  The plot() function will display the shapefile with no background.  If a background map is needed, use ggmap or leaflet.
+Use plot() function to view the map.  The plot() function will display the shapefile with no background.  If a background map is needed, use ggmap or leaflet.  **Code for readOGR and plot are found in the "Shapefiles.R" script.
 
-Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.  First geocode the center of the map using geocode() command.  Then use get_map() command. 
+Use ggmap and RgoogleMaps packages to put shapefiles over imagery quickly.  First geocode the center of the map using geocode() command.  Then use get_map() command.  **Code is found in the "csv.R" script.
 
 *CLIP TWO SHAPEFILE LAYERS*
 
