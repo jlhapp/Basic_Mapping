@@ -1,0 +1,47 @@
+#This section of the script joins the names of states from a states polygon 
+#to a hurricane points shapefile.
+
+#Import rgdal
+library(rgdal)
+
+#Import point Hurricane data.  This dataset was clipped to only hurricane points that
+#fall over the United States.  Hurricane points that fell over the Atlantic Ocean were 
+#omitted.
+HurricanesUS <- readOGR(dsn = "D:/LearnR/BasicMapping/HurricanesUS.shp", layer = "HurricanesUS")
+
+#Import states polygon shapefile
+states <- readOGR(dsn = "D:\\DesktopStuff\\R\\Shapefiles\\UnitedStates.shp", layer = "UnitedStates")
+
+#Use the over() function to create a new.  "STATE_NAME" is a field name in the states shapefile. 
+Polys2Pts <- over(HurricanesUS, states[,"STATE_NAME"])
+
+#Write the new data to the polygon (or shapefile) that you want to have the join.  
+#First write the object shapefile that you want to write the new data to and create
+#a new field by writing $new field.  Then write the new object created from the over()
+#function with the field name.  This will create a new data frame with no spatial components.
+#Do not filter or sort either tables before writing the next command.
+HurricanesUS$states <- Polys2Pts$STATE_NAME
+
+#Verify the spatial join worked by creating a new shapefile and open in GIS program.
+writeOGR(obj = HurricanesUS, dsn = "tempdir", layer = "Hurricane_states", driver = "ESRI Shapefile")
+
+
+############################################################################################
+#This section of the script calculates the percentage and sum of hurricane points
+#that fell over the United States.
+#Import sp library
+library(sp)
+
+#Import large point Hurricane data.  Data is within the US and Atlantic Ocean.
+Hurricane <- readOGR(dsn = "D:/LearnR/BasicMapping/Hurricane.shp", layer = "Hurricane")
+
+#Get the percentage of the hurricanes that land in the United States.  Use is.na()
+#and over() function to calculate the total.  Use the "SpatialPolygons" expression to 
+#write the output as a SpatialPolygons object instead of a SpatialPolygonsDataFrame.
+inside.states <- !is.na(over(Hurricane, as(states, "SpatialPolygons")))
+
+#View the mean of the number of hurricanes that fall in the US
+mean(inside.states)
+
+#View the total number of hurricanes that fall in the US
+sum(inside.states)
