@@ -183,3 +183,5 @@ To set a new projection:
 Shiny allows the user to interact with the leaflet.  To view detailed code, see the "Tornado_Shiny.R" (for points) and "Tornado_Shiny_Lines.R" (for polylines).  Both examples use bootstrapPage but users can also create fluidPage.  When using leaflet with shiny app, you need "leafletOutput" in the ui.R file and renderLeaflet() in the server.R file.  Users will also need the leafletProxy() function to modify a map that's already running in a page.
 
 ![shiny_points](https://cloud.githubusercontent.com/assets/20543318/17521928/2d4a8404-5e23-11e6-9b13-aeb6651ff7eb.JPG)
+
+By: Jena
