@@ -29,5 +29,7 @@ HurricaneCL <- HurricanePrj[states, ]
 #View the new layer to verify the clip worked.
 plot(HurricaneCL)
 
-#View the new layer to verify the clip worked.
-plot(MarineCL)
+#Write newly created clipped hurricane points to a shapefile.  Set the object to the name of
+#file in this script, set the dsn to the folder you want to put the new shapefile, name the new
+#shapefile using the layer object, and set the driver to "ESRI Shapefile."
+writeOGR(obj = HurricaneCL, dsn = "tempdir", layer = "HurricaneCL", driver = "ESRI Shapefile")
