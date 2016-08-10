@@ -23,6 +23,10 @@ First import both shapefile layers and view the extents of both layers using bbo
 
 You will need the rgdal, raster, rgeos libraries.  First import both shapefiles using the readOGR() function.  Finally, use the union function (for example: union(*shp1*, *shp2*)) and plot the result.  **Code is available in the "Merge.R" script.
 
+*JOIN SHAPEFILE AND CSV ATTRIBUTES*
+
+You will need the sp library.  First import the shapefile and csv files using readOGR() function and read.csv() function respectively.  Note the names of the fields/columns that you will need to merge the two datasets together.  Name a new object and use the merge() function.  **Code is available in the "AttributeJoin.R" script.  
+
 #CSV Files
 In order to add xy information from a csv file, you need to have x, y coordinates in the csv file, separating the x and y coordinates into two columns.  Import the csv file into R using read.csv("file location and extension").  To view all of the data and column headings, use the print() function.  To view the first three rows of data use the head function.  For example: head(*object name*, 3)
 
@@ -110,13 +114,14 @@ The raster file used in all the raster examples were obtained from the [Natural 
 
 Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4].
 
-State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]
+State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format][9].  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.
 
 [1]: http://www.srh.noaa.gov/srh/ssd/mapping/
 [2]: http://www.srh.noaa.gov/srh/ssd/mapping/
 [3]: https://gdg.sc.egov.usda.gov/GDGHome.aspx
 [4]: http://www.ncdc.noaa.gov/ibtracs/index.php?name=ibtracs-data
 [7]: https://www.census.gov/geo/maps-data/data/tiger-line.html
+[9]: https://www.census.gov/geo/maps-data/data/tiger-data.html
 
 #GeoJSON Files
 
