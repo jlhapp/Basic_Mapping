@@ -9,23 +9,27 @@ Users can also utilize the maptools package and the readShapePoly function.  The
 
 *VIEW MAP*
 
-Use plot() function to view the map.  The plot() function will display the shapefile with no background.  If a background map is needed, use ggmap or leaflet.  **Code for readOGR and plot are found in the "Shapefiles.R" script.
+Use plot() function to view the map.  The plot() function will display the shapefile with no background.  If a background map is needed, use ggmap or leaflet.  **Code for readOGR and plot are found in the ["Shapefiles.R"][18] script.
 
 If you want to put shapefiles over imagery quickly, use ggmap and RgoogleMaps packages.  First geocode the center of the map using geocode() function.  Then use get_map() function.  **Code is found in the "csv.R" script.
 
 *CLIP TWO SHAPEFILE LAYERS*
 
-First import both shapefile layers and view the extents of both layers using bbox() function.  If needed, use the spTransform() function to project one layer to the other layer.  Create a new object and set the newly projected layer to the polygon.  In order to export the new spatial data frame to a shapefile, use the writeOGR() function.  **Code is in the "Clip.R" script and you will get a result like this:
+First import both shapefile layers and view the extents of both layers using bbox() function.  If needed, use the spTransform() function to project one layer to the other layer.  Create a new object and set the newly projected layer to the polygon.  In order to export the new spatial data frame to a shapefile, use the writeOGR() function.  **Code is in the ["Clip.R"][13] script and you will get a result like this:
 
 ![clip](https://cloud.githubusercontent.com/assets/20543318/17530536/f3403420-5e45-11e6-8718-1ff37892d617.jpg)
 
+[13]: https://github.com/jlhapp/Basic_Mapping/blob/master/Clip
 *MERGE TWO SHAPEFILE LAYERS TOGETHER*
 
-You will need the rgdal, raster, rgeos libraries.  First import both shapefiles using the readOGR() function.  Finally, use the union function (for example: union(*shp1*, *shp2*)) and plot the result.  **Code is available in the "Merge.R" script.
+You will need the rgdal, raster, rgeos libraries.  First import both shapefiles using the readOGR() function.  Finally, use the union function (for example: union(*shp1*, *shp2*)) and plot the result.  **Code is available in the ["Merge.R"][15] script.
 
+[15]: https://github.com/jlhapp/Basic_Mapping/blob/master/Merge
 *JOIN SHAPEFILE AND CSV ATTRIBUTES*
 
-You will need the sp library.  First import the shapefile and csv files using readOGR() function and read.csv() function respectively.  Note the names of the fields/columns that you will need to merge the two datasets together.  Name a new object and use the merge() function.  The csv fields will essentially be appended to the end of the shapefile fields/columns.  **Code is available in the "AttributeJoin.R" script.  
+You will need the sp library.  First import the shapefile and csv files using readOGR() function and read.csv() function respectively.  Note the names of the fields/columns that you will need to merge the two datasets together.  Name a new object and use the merge() function.  The csv fields will essentially be appended to the end of the shapefile fields/columns.  **Code is available in the ["AttributeJoin.R"][11] script.   
+
+[11]: https://github.com/jlhapp/Basic_Mapping/blob/master/AttributeJoin
 
 *SPATIAL JOIN ON POINT AND POLYGON LAYERS*
 
@@ -73,8 +77,9 @@ Use either the raster library or the sp package to import raster data.
  - To import name a object and use readGDAL() function.   For example:   *object* <- readGDAL("folder location.tif")
  - To view the map with a legend, use spplot().  For example:  spplot(*object*)
 
-Code is on "Rasters.R" script.
+Code is on ["Rasters.R"][16] script.
 
+[16]: https://github.com/jlhapp/Basic_Mapping/blob/master/Rasters.R
 *RASTERS IN LEAFLET*
 
 Use the raster() function to import the raster layer.  You will need to specify color scheme using the colorNumeric() function.  Name an object 'pal', and call the colorNumeric() funtion.  Then specify color scheme choices using "c()", set the color values to the raster object and write code that specifies any part of the raster that has no value to transparent.  For example:
@@ -87,9 +92,10 @@ leaflet() %>% addTiles() %>%  addRasterImage(climate, colors = pal, opacity = 0.
 
     addLegend(pal = pal, values = values(climate), title = "Annual Rain")
 
-*You will get a result that looks like this.  Code is available in the "Leaflet.R" script under "RASTER LEAFLET" section. 
+*You will get a result that looks like this.  Code is available in the ["Leaflet.R"][14] script under "RASTER LEAFLET" section. 
 ![raster_leaflet](https://cloud.githubusercontent.com/assets/20543318/17521927/2b5cd548-5e23-11e6-9561-62258babb455.jpeg)
 
+[14]: https://github.com/jlhapp/Basic_Mapping/blob/master/Leaflet.R
 #Mapping in Leaflet
 This section covers shapefiles; for rasters in leaflet, see RASTER.  There are many ways to display a leaflet map.  If you want a simple map write this: leaflet() %>% addPolylines(data = *object*)
 
@@ -105,7 +111,7 @@ Instead of using addPolylines, you can use the following to add various types of
   - Add raster by using addRasterImage()
   - Add points by using addMarker()
 
-To save the leaflet to an html file, click Export in the Viewer window within R, and Save as Webpage...R will install some packages and save the html file to your project directory.  **Code for this leaflet map is in the "Leaflet.R" script under the heading "Categorized Tornado Line Leaflet" but there are many other leaflet examples in the same script.
+To save the leaflet to an html file, click Export in the Viewer window within R, and Save as Webpage...R will install some packages and save the html file to your project directory.  **Code for this leaflet map is in the ["Leaflet.R"][14] script under the heading "Categorized Tornado Line Leaflet" but there are many other leaflet examples in the same script.
 
 ![hurricane_line_leaflet](https://cloud.githubusercontent.com/assets/20543318/17524043/d9eb5a6a-5e2a-11e6-949b-a2e544777bce.jpeg)
 
@@ -137,12 +143,14 @@ To convert a shapefile to a GeoJSON file in R, first load tmap and geojsonio lib
    2. Plot "shp" object using qtm expression.  qtm is the tmap's version of plotting a map. For example:   qtm(shp)
    3. Use the geojson_write() function with the following code in the function (*current file extension*,  file = "*file path*").  For example geojson_write(shp, file = "D:/tmp/shp.geojson")
 
-To import GeoJSON files in leaflet use the readLines() function.  **Code for GeoJSON conversion is available in "Shapefile2GeoJSON.R" script and the GeoJSON example in leaflet is available in the "GeoJSON.R" script.
+To import GeoJSON files in leaflet use the readLines() function.  **Code for GeoJSON conversion is available in ["Shapefile2GeoJSON.R"][17] script and the GeoJSON example in leaflet is available in the "GeoJSON.R" script.
 
+[17]: https://github.com/jlhapp/Basic_Mapping/blob/master/Shapefile2GeoJSON.R
 #Basemaps
-Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the [Leaflet extras github][5] webpage.  **For examples of using different basemaps, see the "Basemaps.R" code.
+Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the [Leaflet extras github][5] webpage.  **For examples of using different basemaps, see the ["Basemaps.R"][12] code.
 
 [5]: http://leaflet-extras.github.io/leaflet-providers/preview/index.html
+[12]: https://github.com/jlhapp/Basic_Mapping/blob/master/Basemaps.R
 
 #Projections in R
 To view detailed Datum information type the following command in R.  This will show you what the abbreviations mean: projInfo(type = "datum")
@@ -172,8 +180,9 @@ Once the shapefile is imported use the proj4string(*object*) fucntion or print(p
   2. Use proj4string(*object*) <- CRS(+init=epsg:32119") function
   3. To convert between different mapping projections and datums use the spTransform() function.  For example: shpData <- spTransform(states, CRS("+proj=longlat +datum=WGS84")) 
 
-**You can't use the third way if no projection is set...you'd need to use the first or second method.**  **Example code is available in the "Shapefiles.R" and "Clip.R" scripts.
+**You can't use the third way if no projection is set...you'd need to use the first or second method.**  **Example code is available in the ["Shapefiles.R"][18] and "Clip.R" scripts.
 
+[18]: https://github.com/jlhapp/Basic_Mapping/blob/master/Shapefiles.R
 You can also remove a projection using    proj4string(*object*) <- NA_character_   function.
 
 *RASTER PROJECTION INFORMATION*
@@ -185,7 +194,7 @@ To set a new projection for rasters:
   1. Create a new object and set it to the raster
   2. Use the projectRaster() function.
 
-**Code is in the "Rasters.R" script
+**Code is in the ["Rasters.R"][16] script
 
 #Shiny
 
