@@ -20,6 +20,10 @@ Import both shapefile layers.  View the extents of both layers using bbox() func
 
 ![clip](https://cloud.githubusercontent.com/assets/20543318/17530536/f3403420-5e45-11e6-8718-1ff37892d617.jpg)
 
+*MERGE TWO SHAPEFILE LAYERS TOGETHER*
+
+You will need the rgdal, raster, rgeos libraries.  Import both shapefiles using readOGR.  Finally, use the union([shp1], [shp2]) and plot the result.  **Code is available in the "Merge.R" script.
+
 #CSV Files
 In order to add xy information from a csv file, you need to have x,y coordinates in the csv file, separating x and y into two columns.  Import csv into R using read.csv("file location and extension")
 To view all of the data and column heading use print([name of variable])
@@ -140,7 +144,7 @@ To import GeoJSON files in leaflet use readLines function.  **Code is available 
 
 
 #Basemaps
-Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the ["Leaflet extras github"][5] webpage.
+Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the ["Leaflet extras github"][5] webpage.  **For examples, see the "Basemaps.R" code.
 
 [5]: http://leaflet-extras.github.io/leaflet-providers/preview/index.html
 
@@ -166,19 +170,16 @@ When you view the projection information, you will see (if necessary) informatio
   3. Units
   4. Ellipsoid
  
-Once the shapefile is imported use the proj4string([variable]) fucntion or print(proj4string([variable])) to read the projection.  If there is no projection or since readShapePoly will not read the projection file, you will get a result of [1] NA.
+Once the shapefile is imported use the proj4string([variable]) fucntion or print(proj4string([variable])) to read the projection.  If there is no projection or since readShapePoly will not read the projection file, you will get a result of "[1] NA."
 
 *THREE WAYS TO SET PROJECTION*
   1. Use proj4string([variable]) <- "+proj=utm +zone=14 +datum=WGS84 +units=m" function
   2. Use proj4string([variable]) <- CRS(+init=epsg:32119") function
-  3. Or create a new variable using spTransform function.  For example: shpData <- spTransform(states, CRS("+proj=longlat +datum=WGS84")) 
+  3. To convert between different mapping projections and datums use the spTransform() command.  For example: shpData <- spTransform(states, CRS("+proj=longlat +datum=WGS84")) 
 
-**You can't use the third way if no projection is set...you'd need to use the first method.**
+**You can't use the third way if no projection is set...you'd need to use the first method.**  *Code is available in the "Shapefiles.R" and "Clip.R" scripts.
 
 You can also remove a projection using proj4string([variable]) <- NA_character_
-
-To convert between different mapping projections and datums use the spTransform() command.
-
 
 *RASTER PROJECTION INFORMATION*
 
@@ -192,5 +193,7 @@ To set a new projection:
 **Code is in the "Rasters.R" script
 
 #Shiny
+
+Shiny allows the user to interact with the leaflet.  To view detailed code, see the "Tornado_Shiny.R" (for points) and "Tornado_Shiny_Lines.R" (for polylines).  Both examples use bootstrapPage but users can also create fluidPage.  When using leaflet with shiny app, you need "leafletOutput" in the ui.R file and renderLeaflet() in the server.R file.  Users will also need the leafletProxy() function to modify a map that's already running in a page.
 
 ![shiny_points](https://cloud.githubusercontent.com/assets/20543318/17521928/2d4a8404-5e23-11e6-9b13-aeb6651ff7eb.JPG)
