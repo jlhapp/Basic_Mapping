@@ -1,0 +1,14 @@
+#Join a csv file to a shapefile
+
+library(sp)
+
+#Import csv file with "GEOID" column that will be used to join to the shapefile
+ACS_X01 <- read.csv("D:/LearnR/BasicMapping/X01_AGE_AND_SEX.csv")
+
+#Import the states shapefile that includes teh "GEOID_Data" column that will be
+#used to join to the csv file.
+ACS_STATE = readOGR(dsn = "D:/LearnR/BasicMapping/ACS_2014_5YR_STATE.shp", layer = "ACS_2014_5YR_STATE")
+
+#Join the states and csv file together using the merge function.  First write the
+#shapefile, csv, followed by both the column names.
+StatesJoin <- merge(ACS_STATE, ACS_X01, by.x = "GEOID_Data", by.y = "GEOID")
