@@ -19,5 +19,5 @@ sp_NC_proj <- spTransform(sp_NC, CRS("+init=epsg:26917"))
 
 #Add leaflet and then add markers.  
 leaflet() %>%
-  addMarkers(data = UNC, lat = ~ latitude, lng = ~ longitude,
-             popup = UNC$School) %>% addTiles()
+  addMarkers(data = sp_NC_proj, lat = ~ latitude, lng = ~ longitude,
+             popup = sp_NC_proj$School) %>% addTiles()
