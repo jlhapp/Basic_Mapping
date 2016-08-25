@@ -4,10 +4,10 @@
 library(rgdal)
 
 #Import point Hurricane data
-Hurricane <- readOGR(dsn = "D:/LearnR/BasicMapping/Hurricane.shp", layer = "Hurricane")
+Hurricane <- readOGR(dsn = "data/Hurricane.shp", layer = "Hurricane")
 
 #Import states polygon
-states <- readOGR(dsn = "D:\\DesktopStuff\\R\\Shapefiles\\UnitedStates.shp", layer = "UnitedStates")
+states <- readOGR(dsn = "data\\UnitedStates.shp", layer = "UnitedStates")
 
 #View the extents for both layers
 bbox(Hurricane)
