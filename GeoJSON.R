@@ -14,13 +14,18 @@ library(jsonlite)
 ############################################################################
 ###########################GeoJSON files#####################################
 #Set the name "geojson" to a geojson file located on my D drive.
-Cat1 <- readLines("D:\\LearnR\\TryGEojson\\Cat1.geojson", warn = FALSE) %>%
+Cat1 <- readLines("data\\Cat1.geojson", warn = FALSE) %>%
   paste(collapse = "\n") %>%
   fromJSON(simplifyVector = FALSE)
 
+#Read GeoJSON file using readOGR
+Cateogry_1 <- readOGR(dsn = "data\\Cat1.geojson", layer = "OGRGeoJSON",
+                      stringsAsFactors = FALSE, verbose = FALSE)
+
+
 #Set the name "geojson" to a geojson file located on my D drive.  Cat2 does
 #not have as much data as Cat1
-Cat2 <- readLines("D:\\LearnR\\TryGEojson\\Cat2.geojson", warn = FALSE) %>%
+Cat2 <- readLines("data\\Cat2.geojson", warn = FALSE) %>%
   paste(collapse = "\n") %>%
   fromJSON(simplifyVector = FALSE)
 
@@ -32,7 +37,7 @@ viewmap %>% addGeoJSON(Cat1) %>% addTiles()
 
 #possibly feature.properties
 data <- getcom
+
+Cateogry_1$Season
 ###########################GeoJSON files#####################################
 ############################################################################
-
-
