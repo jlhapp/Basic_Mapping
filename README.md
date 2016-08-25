@@ -1,4 +1,4 @@
-[For Duke University users click here and extract folder] [22]
+[For Duke University users click here and follow the instructions in the pdf file] [22]
 
 # Basic Mapping
 *IMPORT SHAPEFILE*
