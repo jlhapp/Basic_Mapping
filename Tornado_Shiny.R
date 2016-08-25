@@ -14,7 +14,7 @@ library(rgdal)
 #Import April 2011 tornado outbreak point shapefile using readOGR.  The shp
 #has lat/long field, a MAG field (# field) denoting the magnitude (EF0-EF5), and a
 #REMARK field with unique notes about the tornado.
-April11pt <- readOGR(dsn = "D:/LearnR/BasicMapping/Apr11tornPT.shp", layer = "Apr11tornPT")
+April11pt <- readOGR(dsn = "data/Apr11tornPT.shp", layer = "Apr11tornPT")
 
 
 #############################UI##########################################
