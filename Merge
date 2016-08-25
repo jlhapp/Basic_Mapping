@@ -2,8 +2,8 @@
 
 library(rgdal)
 #Import shapefiles using readOGR from rgdal package
-NC = readOGR(dsn = "D:/LearnR/BasicMapping/NC.shp", layer = "NC")
-SC = readOGR(dsn = "D:/LearnR/BasicMapping/SC.shp", layer = "SC")
+NC = readOGR(dsn = "data/NC.shp", layer = "NC")
+SC = readOGR(dsn = "data/SC.shp", layer = "SC")
 
 #View NC in "Viewer"
 plot(NC)
