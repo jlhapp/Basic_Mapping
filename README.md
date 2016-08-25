@@ -1,3 +1,5 @@
+[For Duke University users click here and extract folder] [22]
+
 # Basic Mapping
 *IMPORT SHAPEFILE*
 
@@ -205,3 +207,4 @@ By: Jena
 [19]: https://github.com/jlhapp/Basic_Mapping/blob/master/Spatial_Join
 [20]: https://github.com/jlhapp/Basic_Mapping/blob/master/csv.R
 [21]: https://github.com/jlhapp/Basic_Mapping/blob/master/csv2leaflet.R
+[22]: https://duke.box.com/v/LearnR
