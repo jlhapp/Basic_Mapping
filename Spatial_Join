@@ -7,10 +7,10 @@ library(rgdal)
 #Import point Hurricane data.  This dataset was clipped to only hurricane points that
 #fall over the United States.  Hurricane points that fell over the Atlantic Ocean were 
 #omitted.
-HurricanesUS <- readOGR(dsn = "D:/LearnR/BasicMapping/HurricanesUS.shp", layer = "HurricanesUS")
+HurricanesUS <- readOGR(dsn = "data/HurricanesUS.shp", layer = "HurricanesUS")
 
 #Import states polygon shapefile
-states <- readOGR(dsn = "D:\\DesktopStuff\\R\\Shapefiles\\UnitedStates.shp", layer = "UnitedStates")
+states <- readOGR(dsn = "data\\UnitedStates.shp", layer = "UnitedStates")
 
 #Use the over() function to create a new.  "STATE_NAME" is a field name in the states shapefile. 
 Polys2Pts <- over(HurricanesUS, states[,"STATE_NAME"])
@@ -33,7 +33,7 @@ writeOGR(obj = HurricanesUS, dsn = "tempdir", layer = "Hurricane_states", driver
 library(sp)
 
 #Import large point Hurricane data.  Data is within the US and Atlantic Ocean.
-Hurricane <- readOGR(dsn = "D:/LearnR/BasicMapping/Hurricane.shp", layer = "Hurricane")
+Hurricane <- readOGR(dsn = "data/Hurricane.shp", layer = "Hurricane")
 
 #Get the percentage of the hurricanes that land in the United States.  Use is.na()
 #and over() function to calculate the total.  Use the "SpatialPolygons" expression to 
