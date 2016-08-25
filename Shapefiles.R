@@ -12,7 +12,11 @@ library(ggplot2)
 #Name a variable "Marine" and use "readOGR expression.  dsn = data source
 #name and should be set to your folder with the shapefile.  layer = the 
 #name of the layer.
-Marine <- readOGR(dsn = "D:/LearnR/BasicMapping/WeatherStations.shp", layer = "WeatherStations")
+    #A.  Absolute path.  Define exactly the location of the shapefile
+    Marine <- readOGR(dsn = "D:/LearnR/BasicMapping/WeatherStations.shp", layer = "WeatherStations")
+    #B.  Relative path.  If you have a folder named data within your project, all you have
+    #    to write is "data/SHAPEFILE"
+    Marine2 <- readOGR(dsn = "data/WeatherStations.shp", layer = "WeatherStations")
 
 #Read "Marine's" projection using proj4string
 proj4string(Marine)
@@ -43,7 +47,7 @@ library(maptools)
 #Open states shapefile (polygons)
 #Points readShapePoints()
 #Lines readShapeLines()
-states <- readShapePoly("D:\\DesktopStuff\\R\\Shapefiles\\UnitedStates.shp")
+states <- readShapePoly("data\\UnitedStates.shp")
 
 #Gets a summary of the data.  Use summary(name of shapefile)
 summary(states)
