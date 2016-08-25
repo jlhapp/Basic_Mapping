@@ -4,7 +4,7 @@ library(rgdal)
 library(RColorBrewer)
 
 #Map lines from a shapefile
-Tornado11 = readOGR(dsn = "D:/LearnR/BasicMapping/April2011.shp", layer = "April2011")
+Tornado11 = readOGR(dsn = "data/April2011.shp", layer = "April2011")
 
 #############################UI##########################################
 ui <- bootstrapPage(
