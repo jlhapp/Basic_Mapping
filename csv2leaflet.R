@@ -6,7 +6,7 @@ library(maptools)
 library(leaflet)
 
 #read the csv file
-UNC <- read.csv("D:/LearnR/BasicMapping/UNC.csv")
+UNC <- read.csv("data/UNC.csv")
 
 #Use the cbind function to combine matrices (the latitude and longitude columns) together
 coords <- cbind(UNC$longitude, UNC$latitude)
