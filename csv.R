@@ -9,7 +9,7 @@ library(ggmap)
 ###########################csv files#########################################
 
 #Open a csv file named UNC
-UNC <- read.csv("D:/LearnR/BasicMapping/UNC.csv")
+UNC <- read.csv("data/UNC.csv")
 
 #View UNC columns and data
 print(UNC)
