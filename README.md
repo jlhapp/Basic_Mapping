@@ -23,6 +23,7 @@
 [46]: https://github.com/jlhapp/Basic_Mapping#geojson-files
 [47]: https://github.com/jlhapp/Basic_Mapping#basemaps
 [48]: https://github.com/jlhapp/Basic_Mapping#projections-in-r
+[49]: https://github.com/jlhapp/Basic_Mapping#table-of-contents
 
 
 # Basic Mapping
@@ -209,7 +210,7 @@ The raster file used in all the raster examples were obtained from the [Natural 
 
 Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4].
 
-State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format][9].  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.
+State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format][9].  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.   [Back to top][49]
 
 By: Jena
 
