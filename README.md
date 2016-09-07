@@ -4,15 +4,15 @@
   3.  Scroll through the readme file or click on a section you are interested in within the Table of Contents to read a description of the scripts.
 
 #Table of Contents:
-  1.  [Basic Mapping][42]
-  2.  [CSV Files][40]
-  3.  [Rasters][43] 
-  4.  [Mapping in Leaflet][44]
-  5.  [GeoJSON files][46]
-  6.  [Basemaps][47]
-  7.  [Projections in R][48]
-  8.  [Shiny][41]
-  9.  [Data sources used][45]
+  1.  [Basic Mapping][42] - learn how what a shapefile is, how to import a shapefile, view a map, clip a shapefile, merge two shapefiles together, and perform joins(both spatial and attribute).
+  2.  [CSV Files][40] - import a csv with xy coordinates and view in leaflet or in a plot.
+  3.  [Rasters][43] - learn what a raster is, import a raster, define a color palette for the raster, and view in leaflet.
+  4.  [Mapping in Leaflet][44] - add various mapping file types to a leaflet.
+  5.  [GeoJSON files][46] - learn the benefits of using GeoJSON files and how to add them to leaflet.
+  6.  [Basemaps][47] - add basemaps from Leaflet's github webpage.
+  7.  [Projections in R][48] - learn the terminology of projections in R and set the projections.
+  8.  [Shiny][41] - brief introduction to a Shiny application with a Leaflet map.
+  9.  [Data sources used][45] - links to the raw data sources that are used in this repository.
 
 [40]: https://github.com/jlhapp/Basic_Mapping#csv-files
 [41]: https://github.com/jlhapp/Basic_Mapping#shiny
