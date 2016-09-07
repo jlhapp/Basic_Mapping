@@ -1,10 +1,8 @@
-[For Duke University users click here and follow the instructions in the pdf file] [22]
-
 #How to use this repository
-1.  If you are a Duke university user, click the link above and follow the instruction in the pdf file.
-2.  asd
+  1.  If you are a Duke University user, [click here and follow the instructions in the pdf file] [22].  All other users can view the scripts and the readme file.
+  2.  This repostiory is intedned for new R and GIS users.
 
-Table of Contents:
+#Table of Contents:
   1.  [Basic Mapping][42]
   2.  [CSV Files][40]
   3.  [Rasters][43] 
@@ -136,17 +134,6 @@ To save the leaflet to an html file, click Export in the Viewer window within R,
 
 ![hurricane_line_leaflet](https://cloud.githubusercontent.com/assets/20543318/17524043/d9eb5a6a-5e2a-11e6-949b-a2e544777bce.jpeg)
 
-#Data Sources used
-The tornado tracks (lines) were downloaded from [NOAA Southern Region Headquarters][1].   The files were then converted from kml to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.  The tornado storm reports (points) were downloaded from [NOAA Southern Region Headquarters][2].
-
-The csv file of UNC schools were created by looking up individual schools and geocoding the addresses in ArcGIS for Desktop.  Once a shapefile was created, the xy coordinates were created using the "Add XY Coordinates" tool in ArcGIS for Desktop.
-
-The raster file used in all the raster examples were obtained from the [Natural Resources Conservation Service GeoSpatial Gateway][3].  It was obtained at the state level, 1981-2010 Annual Average Raster Precip and Temp (Climate PrismRaster dataset).
-
-Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4].
-
-State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format][9].  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.
-
 #GeoJSON Files
 
 The primary benefits of using GeoJSON is that it is a JavaScript object with geographic data.  Also, leaflet is designed to work natively with GeoJSON.  Users can convert a shapefile to a GeoJSON file using QGIS or in R.  To convert in QGIS, right click on layer and select Save As.  Change the file type to GeoJSON and save the new layer.
@@ -211,6 +198,17 @@ Shiny allows the user to interact with the leaflet.  To view detailed code, see 
 When using leaflet with shiny app, you need "leafletOutput" in the ui.R file and renderLeaflet() in the server.R file.  Users will also need the leafletProxy() function to modify a map that's already running in a page.  Another function you must have in Shiny is the reactive() function.  This will update when the user changes the user interface.  The "Tornado_Shiny.R" script will give you a user interface like this:
 
 ![shiny_points](https://cloud.githubusercontent.com/assets/20543318/17521928/2d4a8404-5e23-11e6-9b13-aeb6651ff7eb.JPG)
+
+#Data Sources used
+The tornado tracks (lines) were downloaded from [NOAA Southern Region Headquarters][1].   The files were then converted from kml to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.  The tornado storm reports (points) were downloaded from [NOAA Southern Region Headquarters][2].
+
+The csv file of UNC schools were created by looking up individual schools and geocoding the addresses in ArcGIS for Desktop.  Once a shapefile was created, the xy coordinates were created using the "Add XY Coordinates" tool in ArcGIS for Desktop.
+
+The raster file used in all the raster examples were obtained from the [Natural Resources Conservation Service GeoSpatial Gateway][3].  It was obtained at the state level, 1981-2010 Annual Average Raster Precip and Temp (Climate PrismRaster dataset).
+
+Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4].
+
+State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format][9].  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.
 
 By: Jena
 
