@@ -29,7 +29,7 @@
 # Basic Mapping
 *WHAT ARE SHAPEFILES?*
 
-In short, shapefiles are spatial files with attribute information and they can be points, lines, or polygons.  For instance, if you have a United States polygon shapefile, each state will have information within the attribute table.
+In short, shapefiles are spatial files with attribute information and they can be points, lines, or polygons.  For instance, if you have a United States polygon shapefile, each state will have information (i.e. name, abbreviation, FIPS code, etc.) within the attribute table.
 
 ![shapefile types](https://cloud.githubusercontent.com/assets/20543318/18320380/90b35f9e-74f7-11e6-9a41-774b483c555f.jpg)
 
