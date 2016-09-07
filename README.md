@@ -59,6 +59,8 @@ You will need the sp library.  First import the shapefile and csv files using re
 
 Import the rgdal library and both shapefiles.  Use the over() function to return the rows for the column you specify.  Then join back the new data created from the over() function by creating a new variable with a new column that you create.  **See ["Spatial_Join.R"][19] script to view an example.
 
+[Back to top][49]
+
 #CSV Files
 In order to add xy information from a csv file, you need to have x, y coordinates in the csv file, separating the x and y coordinates into two columns.  Import the csv file into R using read.csv("file location and extension").  To view all of the data and column headings, use the print() function.  To view the first three rows of data use the head function.  For example: head(*object name*, 3)
 
@@ -85,6 +87,8 @@ There are two ways to map csv files into points on a map: using ggmap or using l
 
 **Code is on ["csv.R"][20] script and you will get a result like this:
 ![csv2](https://cloud.githubusercontent.com/assets/20543318/17521919/239a0ccc-5e23-11e6-8ae2-2b9e2a657216.jpeg)
+
+[Back to top][49]
 
 #Rasters
 Use either the raster library or the sp package to import raster data.
