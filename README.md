@@ -99,7 +99,7 @@ There are two ways to map csv files into points on a map: using ggmap or using l
 #Rasters
 *WHAT ARE RASTERS?*
 
-In short, rasters are cells that have values and are arranged into rows and columns.  Examples of rasters include
+In short, rasters are cells that have values and are arranged into rows and columns.  Examples of rasters include scanned maps, imagery data, and surface maps (the example that is used in this repository).
 
 ![intro to rasters](https://cloud.githubusercontent.com/assets/20543318/18321112/a852883e-74fa-11e6-9177-358f5e1ec00d.jpg)
 
