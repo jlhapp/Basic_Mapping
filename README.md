@@ -1,5 +1,31 @@
 [For Duke University users click here and follow the instructions in the pdf file] [22]
 
+#How to use this repository
+1.  If you are a Duke university user, click the link above and follow the instruction in the pdf file.
+2.  asd
+
+Table of Contents:
+  1.  [Basic Mapping][42]
+  2.  [CSV Files][40]
+  3.  [Rasters][43] 
+  4.  [Mapping in Leaflet][44]
+  5.  [GeoJSON files][46]
+  6.  [Basemaps][47]
+  7.  [Projections in R][48]
+  8.  [Shiny][41]
+  9.  [Data sources used][45]
+
+[40]: https://github.com/jlhapp/Basic_Mapping#csv-files
+[41]: https://github.com/jlhapp/Basic_Mapping#shiny
+[42]: https://github.com/jlhapp/Basic_Mapping#basic-mapping
+[43]: https://github.com/jlhapp/Basic_Mapping#rasters
+[44]: https://github.com/jlhapp/Basic_Mapping#mapping-in-leaflet
+[45]: https://github.com/jlhapp/Basic_Mapping#data-sources-used
+[46]: https://github.com/jlhapp/Basic_Mapping#geojson-files
+[47]: https://github.com/jlhapp/Basic_Mapping#basemaps
+[48]: https://github.com/jlhapp/Basic_Mapping#projections-in-r
+
+
 # Basic Mapping
 *IMPORT SHAPEFILE*
 
