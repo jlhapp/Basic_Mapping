@@ -1,6 +1,7 @@
 #How to use this repository
   1.  If you are a Duke University user, [click here and follow the instructions in the pdf file] [22].  All other users can view the scripts and the readme file.
   2.  This repostiory is intedned for new R and GIS users.
+  3.  Scroll through the readme file or click on a section you are interested in within the Table of Contents to read a description of the scripts.
 
 #Table of Contents:
   1.  [Basic Mapping][42]
