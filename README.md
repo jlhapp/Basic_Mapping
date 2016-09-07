@@ -121,6 +121,8 @@ leaflet() %>% addTiles() %>%  addRasterImage(climate, colors = pal, opacity = 0.
 *You will get a result that looks like this.  Code is available in the ["Leaflet.R"][14] script under "RASTER LEAFLET" section. 
 ![raster_leaflet](https://cloud.githubusercontent.com/assets/20543318/17521927/2b5cd548-5e23-11e6-9561-62258babb455.jpeg)
 
+[Back to top][49]
+
 #Mapping in Leaflet
 This section covers shapefiles; for rasters in leaflet, see RASTER.  There are many ways to display a leaflet map.  If you want a simple map write this: leaflet() %>% addPolylines(data = *object*)
 
@@ -140,6 +142,8 @@ To save the leaflet to an html file, click Export in the Viewer window within R,
 
 ![hurricane_line_leaflet](https://cloud.githubusercontent.com/assets/20543318/17524043/d9eb5a6a-5e2a-11e6-949b-a2e544777bce.jpeg)
 
+[Back to top][49]
+
 #GeoJSON Files
 
 The primary benefits of using GeoJSON is that it is a JavaScript object with geographic data.  Also, leaflet is designed to work natively with GeoJSON.  Users can convert a shapefile to a GeoJSON file using QGIS or in R.  To convert in QGIS, right click on layer and select Save As.  Change the file type to GeoJSON and save the new layer.
@@ -152,8 +156,12 @@ To convert a shapefile to a GeoJSON file in R, first load tmap and geojsonio lib
 
 To import GeoJSON files in leaflet use the readLines() function.  **Code for GeoJSON conversion is available in ["Shapefile2GeoJSON.R"][17] script and the GeoJSON example in leaflet is available in the "GeoJSON.R" script.
 
+[Back to top][49]
+
 #Basemaps
 Users can use many different types of basemaps in R.  For a full list of available basemaps, go to the [Leaflet extras github][5] webpage.  **For examples of using different basemaps, see the ["Basemaps.R"][12] code.
+
+[Back to top][49]
 
 #Projections in R
 To view detailed Datum information type the following command in R.  This will show you what the abbreviations mean: projInfo(type = "datum")
@@ -197,6 +205,8 @@ To set a new projection for rasters:
 
 **Code is in the ["Rasters.R"][16] script
 
+[Back to top][49]
+
 #Shiny
 
 Shiny allows the user to interact with the leaflet.  To view detailed code, see the "Tornado_Shiny.R" (for points) and "Tornado_Shiny_Lines.R" (for polylines).  Both examples use the bootstrapPage() but another common type of page is the fluidPage().  You can write a Shiny app either in two R scripts (named: ui.R and server.R) or in one app with the ui and server written in the script.  Both examples use one script.
@@ -204,6 +214,8 @@ Shiny allows the user to interact with the leaflet.  To view detailed code, see 
 When using leaflet with shiny app, you need "leafletOutput" in the ui.R file and renderLeaflet() in the server.R file.  Users will also need the leafletProxy() function to modify a map that's already running in a page.  Another function you must have in Shiny is the reactive() function.  This will update when the user changes the user interface.  The "Tornado_Shiny.R" script will give you a user interface like this:
 
 ![shiny_points](https://cloud.githubusercontent.com/assets/20543318/17521928/2d4a8404-5e23-11e6-9b13-aeb6651ff7eb.JPG)
+
+[Back to top][49]
 
 #Data Sources used
 The tornado tracks (lines) were downloaded from [NOAA Southern Region Headquarters][1].   The files were then converted from kml to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.  The tornado storm reports (points) were downloaded from [NOAA Southern Region Headquarters][2].
@@ -214,7 +226,9 @@ The raster file used in all the raster examples were obtained from the [Natural 
 
 Hurricane data was obtained from the [NOAA National Centers for Environmental Information][4].
 
-State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format][9].  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.   [Back to top][49]
+State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.][7]  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format][9].  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.   
+
+[Back to top][49]
 
 By: Jena
 
