@@ -180,11 +180,14 @@ Users can use many different types of basemaps in R.  For a full list of availab
 [Back to top][49]
 
 #Projections in R
-To view detailed Datum information type the following command in R.  This will show you what the abbreviations mean: projInfo(type = "datum")
 
-To view detailed Projection information type the following command in R: projInfo(type = "proj")
+To view detailed information about information relating to datums and projections, use the following code in a script:
 
-To view detailed Ellipsoid information type the following command in R: projInfo(type = "ellps")
+Term | Code 
+--- | --- | ---
+Datum | projInfo(type = "datum")
+Ellipsoid | projInfo(type = "ellps")
+Projection | projInfo(type = "proj")
 
 Obtain EPSG codes from the [EPSG Geodetic Parameter Registry][6] website.
 
