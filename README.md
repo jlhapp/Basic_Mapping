@@ -2,6 +2,7 @@
   1.  This repostiory is intended for new R and GIS users.
   2.  Scroll through the readme file or click on a section you are interested in within the Table of Contents to read a description of the scripts.
   3.  If you are a Duke University user, [click here and follow the instructions in the pdf file] [22].  You will be able to copy and paste these scipts into your R project and view the results.  All other users can view/copy the scripts and replicate with your data.
+  4.  **First copy and paste the ["Install_Packages"][50] script into your project to install all of the necessary packages.**
 
 #Table of Contents:
   1.  [Basic Mapping][42] - learn how what a shapefile is, how to import a shapefile, view a map, clip a shapefile, merge two shapefiles together, and perform joins(both spatial and attribute).
@@ -24,6 +25,7 @@
 [47]: https://github.com/jlhapp/Basic_Mapping#basemaps
 [48]: https://github.com/jlhapp/Basic_Mapping#projections-in-r
 [49]: https://github.com/jlhapp/Basic_Mapping#table-of-contents
+[50]: https://github.com/jlhapp/Basic_Mapping#install-packages
 
 
 # Basic Mapping
