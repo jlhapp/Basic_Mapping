@@ -146,13 +146,14 @@ This leaflet map will have no tiles or view set, but a leaflet map will appear.
 
 If you want a customized map, create a new object and set leaflet(), setView(), and tiles.  This will make it easier to add objects one at a time.  For example: MyMap <- leaflet() %>% setView(lng = -78.2589, lat = 35.9601, zoom = 8)  %>% addTiles()
 
-Now all you need to do is write the "MyMap" object follow by the maggitr operator (%>%) and add data (polygons, lines, etc.) that you need.  For example: MyMap %>% addPolylines(data = April11) 
+Now all you need to do is write the "MyMap" object follow by the maggitr operator (%>%) and add data (polygons, lines, etc.) that you need.  For example: MyMap %>% addPolylines(data = April11)            Instead of using addPolylines, you can use the following to add various types of data:
 
-Instead of using addPolylines, you can use the following to add various types of data:
-  - Add polygons by using addPolygons()
-  - Add geojson by using addGeoJSON()
-  - Add raster by using addRasterImage()
-  - Add points by using addMarker()
+Data Type | Code 
+--- | --- | ---
+Points | addMarker()
+Polygons | addPolygons()
+Raster | addRasterImage()
+GeoJSON | addGeoJSON()
 
 To save the leaflet to an html file, click Export in the Viewer window within R, and Save as Webpage...R will install some packages and save the html file to your project directory.  **Code for this leaflet map is in the ["Leaflet.R"][14] script under the heading "Categorized Tornado Line Leaflet" but there are many other leaflet examples in the same script.
 
