@@ -25,7 +25,7 @@
 [47]: https://github.com/jlhapp/Basic_Mapping#basemaps
 [48]: https://github.com/jlhapp/Basic_Mapping#projections-in-r
 [49]: https://github.com/jlhapp/Basic_Mapping#table-of-contents
-[50]: https://github.com/jlhapp/Basic_Mapping#install-packages
+[50]: https://github.com/jlhapp/Basic_Mapping/blob/master/Install_Packages
 
 
 # Basic Mapping
