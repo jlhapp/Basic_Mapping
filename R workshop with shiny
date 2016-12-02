@@ -1,0 +1,447 @@
+---
+title: "Mapping in R"
+author: "Jena Happ"
+date: "November 10, 2016"
+output:
+  html_document:
+    code_folding: hide
+    highlight: pygments
+    number_sections: yes
+    theme: readable
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+runtime: shiny
+---
+
+
+```{r, message=F, warning=F}
+last.edited <- Sys.Date()
+preamble <- "This document was last updated"
+modified.date <- paste(preamble, last.edited, sep = " ")
+modified.date
+```
+once published, it goes to rpubs.com
+
+# R and Mapping
+
+This workshop is meant for those who have worked with R and GIS products.   Prerequisites for this workshop include [Intro to R: Data Transformations, Analysis, and Data Structures and Introduction to ArcGIS](http://library.duke.edu/data/news).
+
+Duke University users can [download the data](https://duke.box.com/v/LearnR) and the scripts used in this workshop.  
+
+# Why Use R for GIS? 
+
+R can be very useful for GIS users.  Some reasons include:
+
+1. Switch between spatial analysis and statistical analysis quickly and easily
+2. Reproducible and sharable
+3. Faster analysis  
+4. More control on visualization and web interface (both good and bad)
+
+
+#Library Packages
+
+R has many libraries available. 
+
+##Exercise 1
+Create a R project and import data from Duke Box into the project.
+
+
+ 
+1. Open R Studio 
+2. Assuming you have not created a project, click on the âProject: (None)â button near the top-right part of the screen.  Then select âNew Projectâ¦â   
+
+<!-- ```{r, fig.retina=NULL, out.width=600, echo=FALSE} -->
+<!-- knitr::include_graphics("images/Step3.png") -->
+<!-- ```  -->
+
+
+<!-- 3. Name the directory âMappingâ and set the folder location to a location on your computer that you routinely use: -->
+
+
+<!-- ```{r, fig.retina=NULL, out.width=450, echo=FALSE} -->
+<!-- knitr::include_graphics("images/RealStep3.png") -->
+<!-- ``` -->
+
+
+
+<!-- 4. Take note of the folder location and name.  In this case the folder location is D:\Mapping -->
+
+
+<!-- ```{r, fig.retina=NULL, out.width=600, echo=FALSE} -->
+<!-- knitr::include_graphics("images/Step4.png") -->
+<!-- ``` -->
+
+
+<!-- 5. Go to the data.zip file that you had downloaded in step 1.  Right click the folder and select âExtract All Files.â  Browse to the location of the R Studio Mapping project that was just created (in this case:  D:\Mapping) -->
+
+
+<!-- ```{r, fig.retina=NULL, out.width=500, echo=FALSE} -->
+<!-- knitr::include_graphics("images/Step5.png") -->
+<!-- ``` -->
+
+
+<!-- 6. Now the data appears in the Mapping project within R Studio: -->
+
+
+<!-- ```{r, fig.retina=NULL, out.width=600, echo=FALSE} -->
+<!-- knitr::include_graphics("images/Step6.png") -->
+<!-- ``` -->
+
+
+
+##Exercise 2
+Import the necessary libraries.  First, you'll need to install the package and then load the package.  If you do not have all of the packages required, please use the following code to install them. 
+```
+install.packages("rgdal")
+install.packages("leaflet")
+install.packages("ggmap")
+install.packages("sp")
+
+#Then load packages 
+require(rgdal)
+require(leaflet)
+require(ggmap)
+require(sp)
+```
+
+
+#Importing Spatial Data
+
+There are many different packages users can use to load a shapefile into R.  Using the package called rgdal allows you to keep the projection of the shapefile.  When importing shapefiles, you need to specify the the data source name (by absolute path or relative path) and the layer name.
+
+Absolute path.  Define exactly the location of the shapefile
+
+```
+Marine <- readOGR(dsn = "D:/LearnR/BasicMapping/WeatherStations.shp", layer = "WeatherStations")
+```
+
+Relative path.  If you have a folder named "data" within your project, all you have to write is "data/SHAPEFILE NAME"
+
+```
+Marine2 <- readOGR(dsn = "data/WeatherStations.shp", layer = "WeatherStations")
+```
+##Exercise 3
+Import shapefiles and view the attribute table
+```
+Add the "ACS_2014_5YR_STATE" shapefile
+```
+
+Answer:
+``` {r, message=F, warning=F}
+library(rgdal)
+
+US <- readOGR(dsn = "data/ACS_2014_5YR_STATE.shp", layer = "ACS_2014_5YR_STATE", verbose = FALSE)
+```
+
+
+To view attributes and summary:
+```
+head(US)
+attributes(Marine)
+summary(Marine)
+```
+
+
+
+# Projections
+
+Once the shapefile is imported use the proj4string(*object*) fucntion or print(proj4string(*object*)) function to read the projection.  If there is no projection you will get a result of "[[1]] NA."
+
+
+ When you view the projection information, you will see (if necessary) information including:
+ 
+  1. Projection (Latitude/Longitude, UTM/Zone, etc.)
+  2. Datum
+  3. Units
+  4. Ellipsoid
+ 
+
+To view detailed information about information relating to datums and projections, use the following code in a script:
+
+Term | Code 
+--- | --- | ---
+Datum | projInfo(type = "datum")
+Ellipsoid | projInfo(type = "ellps")
+Projection | projInfo(type = "proj")
+
+
+
+You will need sp and rgdal libraries to transform coordinate systems.  Here are common codes used in the United States and North Carolina.  Obtain EPSG codes from the [EPSG Geodetic Parameter Registry](http://www.epsg-registry.org) website.
+
+ - WGS84 = EPSG: 4326
+
+ - NAD83 = EPSG: 4269
+
+ - NAD83 Zone 17 = EPSG: 26917
+ 
+
+
+THREE WAYS TO SET PROJECTION
+
+
+  1. Use proj4string(*object*) <- "+proj=utm +zone=14 +datum=WGS84 +units=m" function
+  
+  2. Use proj4string(*object*) <- CRS(+init=epsg:32119") function
+  
+  3. To convert between different mapping projections and datums use the spTransform() function.  For example: shpData <- spTransform(states, CRS("+proj=longlat +datum=WGS84")).  You can't use the third way if no projection is set...you'd need to use the first or second method
+  
+  
+
+##View the projection of the shapefile.  
+
+Read "Marine's" projection using proj4string
+```{r, echo=FALSE, message=F, warning=F}
+#proj4string(Marine)
+```
+
+
+##Preview the map
+
+Type the following command:
+
+plot(Marine)
+
+##, echo=FALSE delete if you want to hide code
+And you will get this result:
+```{r, message=F, warning=F}
+library(leaflet)
+library(rgdal)
+library(sp)
+library(jsonlite)
+Marine <- readOGR(dsn = "data/WeatherStations.shp", layer = "WeatherStations", verbose = FALSE)
+plot(Marine)
+```
+
+# Joining data
+
+
+# Geocoding 
+
+You cannot geocode addresses in R yet.  You will need to have them in x,y coordinates which can be done using Google or Bing api. (insert LibGuide).  Once you have x,y coordinates, you can plot theses points on a map.  You need to have the coordinates in a csv file and can plot them in two different ways: a leaflet map or on top of a google map.
+
+# Leaflet
+There are many ways to display a leaflet map.  If you want a simple map write: leaflet() %>% addPolylines(data = *object*)
+
+This leaflet map will have no tiles or view set, but a leaflet map will appear.
+
+If you want a customized map, create a new object and set leaflet(), setView(), and tiles.  This will make it easier to add objects one at a time.  For example: MyMap <- leaflet() %>% setView(lng = -78.2589, lat = 35.9601, zoom = 8)  %>% addTiles()
+
+Now all you need to do is write the "MyMap" object follow by the maggitr operator (%>%) and add data (polygons, lines, etc.) that you need.  For example: MyMap %>% addPolylines(data = April11)            Instead of using addPolylines, you can use the following to add various types of data:
+
+Data Type | Code 
+--- | ---
+Points | addMarker()
+Polygons | addPolygons()
+Raster | addRasterImage()
+GeoJSON | addGeoJSON()
+
+Using the following code, you'll create a simple map of the tornado lines:
+
+```
+Tornado11 = readOGR(dsn = "data/April2011.shp", layer = "April2011")
+
+#Add lines from shapefile with all one color
+leaflet() %>% addTiles() %>%
+  addPolylines(data = Tornado11, col = "blue")
+```
+
+```{r, echo=FALSE, message=F, warning=F}
+Tornado11 = readOGR(dsn = "data/April2011.shp", layer = "April2011", verbose= FALSE)
+#Add lines from shapefile with all one color
+leaflet() %>% addTiles() %>%
+  addPolylines(data = Tornado11, col = "blue")
+```
+
+
+
+Using the following code, you'll create this more complex map of the tornadoes cateogrized by magnitude:
+
+
+
+```
+#Map lines from a shapefile
+Tornado11 = readOGR(dsn = "data/April2011.shp", layer = "April2011")
+
+#create pal variable and use colorNumeric expression since the field 
+#being used is an integer
+pal <- colorNumeric(
+  
+  #specify the color scheme you want to use
+  palette = "YlOrRd",
+  
+  #use domain = and specify the shapefile and field
+  domain = Tornado11$MagNum
+)
+
+#create leaflet and include line shapefile
+leaflet(Tornado11) %>% addTiles() %>%
+
+  #add polylines
+  addPolylines(
+    
+    #denote the "pal" variable created above and reference the 
+    #shapefile and field again.  Use "~paste()"function to add 
+    #custom field/column info
+    stroke = TRUE, color = ~pal(Tornado11$MagNum), 
+    popup = ~paste("Magnitude: ", MagNum)
+  )
+```
+
+```{r, echo=FALSE, message=F, warning=F}
+library(leaflet)
+library(rgdal)
+library(sp)
+library(jsonlite)
+Tornado11 = readOGR(dsn = "data/April2011.shp", layer = "April2011", verbose = FALSE)
+
+pal<-colorNumeric(
+  palette = "YlOrRd",
+  
+  domain = Tornado11$MagNum
+)
+leaflet(Tornado11) %>% addTiles() %>%
+  addPolylines(
+    stroke = TRUE, color = ~pal(Tornado11$MagNum), popup = ~paste("Magnitude: ", MagNum)
+  )
+```
+
+##Exercise 7
+
+#Data Sources used
+The tornado tracks (lines) were downloaded from [NOAA Southern Region Headquarters](http://www.srh.noaa.gov/srh/ssd/mapping/).   The files were then converted from kml to a shapefile using the "KML to Layer" tool in ArcGIS for Desktop.  The tornado storm reports (points) were downloaded from [NOAA Southern Region Headquarters](http://www.srh.noaa.gov/srh/ssd/mapping/).
+
+The csv file of UNC schools were created by looking up individual schools and geocoding the addresses in ArcGIS for Desktop.  Once a shapefile was created, the xy coordinates were created using the "Add XY Coordinates" tool in ArcGIS for Desktop.
+
+Hurricane data was obtained from the [NOAA National Centers for Environmental Information](http://www.ncdc.noaa.gov/ibtracs/index.php?name=ibtracs-data).
+
+State polygon shapefiles were obtained from the [United States Census Bureau Tiger/Line Shapefiles.](https://www.census.gov/geo/maps-data/data/tiger-line.html)  The American Community Survey data was downloaded from the United States Census Bureau using the [American Community Survey 5-Year Estimates - Geodatabase Format](https://www.census.gov/geo/maps-data/data/tiger-data.html).  Once the geodatabase was imported into ArcGIS for Desktop, the shapefile and table was exported to a shapefile and a csv file.
+
+```{r}
+library(shiny)
+library(leaflet)
+library(RColorBrewer)
+library(rgdal)
+
+#This will create a leaflet map with a slider for magnitude of tornado (1-5 scale)
+#leaflet will create a static map and leafletProxy will mangage the dynamic
+#elements.  You need leafletProxy() function to modify a map that's already
+#running in a page.
+
+#This will also allow the user to change the color scheme of the points
+
+
+#Import April 2011 tornado outbreak point shapefile using readOGR.  The shp
+#has lat/long field, a MAG field (# field) denoting the magnitude (EF0-EF5), and a
+#REMARK field with unique notes about the tornado.
+April11pt <- readOGR(dsn = "data/Apr11tornPT.shp", layer = "Apr11tornPT", verbose = FALSE)
+
+
+#############################UI##########################################
+#bootstrap page has no content and you should use html/css regularly.
+#others should use fluidPage()
+ui <- bootstrapPage(
+  tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
+  #call the leaflet map and specify width and height
+  leafletOutput("map", width = "100%", height = "100%"),
+  #have a panel on top of the map and specify the width and height
+  absolutePanel(top = 10, right = 10,
+                
+                #create a slider input bar. first add the type of slider, followed
+                #by the title of the slider input.  set the minimumn and maximumn number
+                #by using min and max followed by the shapefile variable, $, and the 
+                #column name.  Set the value to range and reference the shapefile and 
+                #column. Finally set the number to step.
+                sliderInput("range", "Magnitudes", min(April11pt$MAG), max(April11pt$MAG),
+                            value = range(April11pt$MAG), step = 1
+                ),
+                #Create a drop-down menu of color schemes
+                selectInput("colors", "Color Scheme",
+                            rownames(subset(brewer.pal.info, category %in% c("seq", "div")))
+                ),
+                #create a checkbox to allow the user to turn on/off the legend
+                #First, reference the "legend" variable used in the server file
+                #(if input$legend), then name the checkbox, and write TRUE.
+                checkboxInput("legend", "Show legend", TRUE)
+  )
+)
+#############################UI##########################################
+
+#################################SERVER######################################
+server <- function(input, output, session) {
+  #To use the slide, you need a "reactive" function.  Here I'm naming a variable
+  #filteredData and using the reactive function
+  filteredData <- reactive({
+    #here I'm referencing the shapefile, followed by the shapefile and the column
+    #you want and then "input$range" expression that is used in the sliderInput
+    #in the UI.
+    April11pt[April11pt$MAG >= input$range[1] & April11pt$MAG <= input$range[2],]
+  })
+  
+  #Create reactive expression for color scheme on the point shapefile
+  colorpal <- reactive({
+    colorNumeric(input$colors, April11pt$MAG)
+  })
+  
+  #Create and render a leaflet map.  the variable "map" created here will
+  #be referenced in the leafletProxy below and in the leafletOutput in the UI.
+  output$map <- renderLeaflet({
+    #add leaflet here by using your shapefile and add tiles
+    leaflet(April11pt) %>% addTiles() %>%
+      #"calculate the extent."  Since you are using point data you already 
+      #have lat/long in your table...so all you need to do, is write the code
+      #below
+      fitBounds(~min(long), ~min(lat), ~max(long), ~max(lat))
+  })
+  
+  
+  #observe is like a reactive expression.  Observe can read reactive values
+  #and call reactive expressions...they will also re-execute automatically when 
+  #the reactive expressions change.  However, observe doesn't create a result
+  #and cannot be used as an input to other reactive. 
+  #(from: http://shiny.rstudio.com/reference/shiny/latest/observe.html)
+  observe({
+    #colorpal() is used as the reactive function for the points shapefile
+    pal <- colorpal()
+    
+    
+    #Since you need leafletProxy() function to modify a map that's already
+    #running in a page, you'll want to add the leafletProxy here.  Reference
+    #the name of the map (from the Output$map) and use the filtered data for
+    #the data.
+    leafletProxy("map", data = filteredData()) %>%
+      #You'll want to refresh the map by clearing the shapes
+      clearShapes() %>%
+      #Re-add the the points.  Change size of the points by changing the
+      #radius (was ~10^MAG/10)
+      addCircles(radius = 7500, weight = 1, color = "#777777",
+                 #To create custom pop-up use parenthesis followed by a comma and then
+                 #use the field you want to reference that has the unique number/text.
+                 #use "<strong>" to start bold and "</strong>" to end bold statement
+                 #use "<br>" to start a new paragraph
+                 fillColor = ~pal(MAG), fillOpacity = 1, popup = ~paste("<strong>Magnitude:</strong> EF", MAG, "tornado.", "<br><strong>Remark:</strong>", REMARK)
+      )
+  })
+  
+  observe({
+    proxy <- leafletProxy("map", data = April11pt)
+    
+    #Remove any existing legend, and only if the legend is
+    #enabled, create a new one.
+    proxy %>% clearControls()
+    #This states if the legend checkbox is turned on...
+    if (input$legend) {
+      pal <- colorpal()
+      proxy %>% addLegend(position = "bottomright",
+                          pal = pal, values = ~MAG
+      )
+    }
+  })
+}
+
+#################################SERVER######################################
+
+#run the shiny app
+shinyApp(ui, server)
+```
