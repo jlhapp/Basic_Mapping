@@ -1,0 +1,128 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# R and Mapping\n",
+    "\n",
+    "This workshop is meant for those who have worked with R and GIS products.   Prerequisites for this workshop include [Intro to R: Data Transformations, Analysis, and Data Structures and Introduction to ArcGIS](http://library.duke.edu/data/news).\n",
+    "\n",
+    "Duke University users can [download the data](https://duke.box.com/v/LearnR) and the scripts used in this workshop. \n",
+    "\n",
+    "# Why Use R for GIS? \n",
+    "\n",
+    "R can be very useful for GIS users.  Some reasons include:\n",
+    "\n",
+    "1. Switch between spatial analysis and statistical analysis quickly and easily\n",
+    "2. Reproducible and sharable\n",
+    "3. Faster analysis  \n",
+    "4. More control on visualization and web interface (both good and bad)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Library Packages\n",
+    "\n",
+    "R has many libraries available. \n",
+    "\n",
+    "## Exercise 1\n",
+    "Create a R project and import data from Duke Box into the project."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "ename": "ERROR",
+     "evalue": "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n",
+     "output_type": "error",
+     "traceback": [
+      "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n"
+     ]
+    },
+    {
+     "ename": "ERROR",
+     "evalue": "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n",
+     "output_type": "error",
+     "traceback": [
+      "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n"
+     ]
+    },
+    {
+     "ename": "ERROR",
+     "evalue": "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n",
+     "output_type": "error",
+     "traceback": [
+      "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n"
+     ]
+    },
+    {
+     "ename": "ERROR",
+     "evalue": "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n",
+     "output_type": "error",
+     "traceback": [
+      "Error in contrib.url(repos, type): trying to use CRAN without setting a mirror\n"
+     ]
+    }
+   ],
+   "source": [
+    "install.packages(\"rgdal\")\n",
+    "install.packages(\"leaflet\")\n",
+    "install.packages(\"ggmap\")\n",
+    "install.packages(\"sp\")\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "1. Connect to library"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# type your answer\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "R",
+   "language": "R",
+   "name": "ir"
+  },
+  "language_info": {
+   "codemirror_mode": "r",
+   "file_extension": ".r",
+   "mimetype": "text/x-r-source",
+   "name": "R",
+   "pygments_lexer": "r",
+   "version": "3.2.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
